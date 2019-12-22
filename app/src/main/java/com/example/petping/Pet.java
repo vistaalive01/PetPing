@@ -10,7 +10,7 @@ public class Pet {
     private String health;
     private String DOB;
 
-    public Pet(String name, String sex, String weight, String breed, String character, String story, String health, String DOB) {
+    public Pet(String name, String breed, String sex, String weight, String character, String story, String health, String DOB) {
         this.name = name;
         this.sex = sex;
         this.weight = weight;

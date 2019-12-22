@@ -3,4 +3,10 @@
     <string name="petName">Name</string>
     <string name="petBreed">Breed</string>
     <string name="petSex">Sex</string>
+    <string name="btnAddPet">Add Pet</string>
+    <string name="petWeight">Weight</string>
+    <string name="petChar">Characteristics</string>
+    <string name="petStory">Story</string>
+    <string name="petHealth">Health</string>
+    <string name="petDOB">DOB</string>
 </resources>
