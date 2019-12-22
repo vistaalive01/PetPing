@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">PetPing</string>
+    <string name="petName">Name</string>
+    <string name="petBreed">Breed</string>
+    <string name="petSex">Sex</string>
+</resources>

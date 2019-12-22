@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "599382513060",
+    "firebase_url": "https://petping-c03ea.firebaseio.com",
+    "project_id": "petping-c03ea",
+    "storage_bucket": "petping-c03ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:599382513060:android:14dc45a4889712b0735d31",
+        "android_client_info": {
+          "package_name": "com.example.petping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "599382513060-4jdiohp0ejbobjf43tujf4m529c1o4co.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.petping",
+            "certificate_hash": "c5ea5a3174ec3ff5431fda97821e83b1260eb9ce"
+          }
+        },
+        {
+          "client_id": "599382513060-i9fvf3nd9ptohprsgsko6r47sj1tj7c4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJrnZFq7BTMx5uApkN3UVG9SqlSPQHNZI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "599382513060-i9fvf3nd9ptohprsgsko6r47sj1tj7c4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
