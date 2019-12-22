@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        showMessage("Add pet success!!");
+                        showMessage("Add pet success!");
                     }
                 });
     }
