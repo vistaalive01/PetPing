@@ -9,4 +9,9 @@
     <string name="petStory">Story</string>
     <string name="petHealth">Health</string>
     <string name="petDOB">DOB</string>
+    <string-array name="breed_array">
+        <item>Mixed Poodle</item>
+        <item>Mixed Thai</item>
+        <item>Thai</item>
+    </string-array>
 </resources>
