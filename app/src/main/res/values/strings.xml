@@ -10,8 +10,13 @@
     <string name="petHealth">Health</string>
     <string name="petDOB">DOB</string>
     <string-array name="breed_array">
-        <item>Mixed Poodle</item>
-        <item>Mixed Thai</item>
-        <item>Thai</item>
+        <item>พุดเดิ้ลพันธุ์ผสม</item>
+        <item>ไทยผสม</item>
+        <item>ไทย</item>
+    </string-array>
+    <string-array name="color_array">
+        <item>น้ำตาล</item>
+        <item>เทา</item>
+        <item>ดำ</item>
     </string-array>
 </resources>

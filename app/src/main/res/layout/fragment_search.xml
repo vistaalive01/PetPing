@@ -3,21 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/typeLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/txt_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ประเภท"/>
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:gravity="right|center_vertical"
+                android:text="ประเภท" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -28,27 +31,30 @@
                     android:id="@+id/cb_dog"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="สุนัข" />
+                    android:text="สุนัข"
+                   />
 
                 <CheckBox
+                    android:id="@+id/cb_cat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/cb_cat"
-                    android:text="แมว"/>
+                    android:text="แมว"
+                    />
 
                 <CheckBox
                     android:id="@+id/cb_rabbit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="กระต่าย" />
+                    android:text="กระต่าย"
+                   />
 
                 <CheckBox
                     android:id="@+id/cb_other"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="อื่นๆ" />
+                    android:text="อื่นๆ"
+                   />
             </LinearLayout>
-
 
 
         </LinearLayout>
@@ -59,10 +65,12 @@
             android:orientation="horizontal">
 
             <TextView
+
                 android:id="@+id/txt_breed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="สายพันธุ์"/>
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:gravity="right|center_vertical"
+                android:text="สายพันธุ์" />
 
             <Spinner
                 android:id="@+id/breed_spin"
@@ -81,13 +89,14 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/txt_color"
-                android:text="สี"/>
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:gravity="right|center_vertical"
+                android:text="สี" />
 
             <Spinner
-                android:id="@+id/color_spinner"
+                android:id="@+id/color_spin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:drawable/btn_dropdown"
@@ -99,11 +108,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/txt_sex"
-                android:text="เพศ"/>
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:gravity="right|center_vertical"
+                android:text="เพศ" />
 
             <RadioButton
                 android:id="@+id/rd_male"
@@ -125,34 +136,39 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="อายุ"/>
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:gravity="right"
+                android:text="อายุ" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <CheckBox
+                    android:id="@+id/cb_age_least1y"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="น้อยกว่า 1 ปี"
-                    android:id="@+id/cb_age_least1y"/>
+                    android:text="น้อยกว่า 1 ปี" />
+
                 <CheckBox
+                    android:id="@+id/cb_age_1to5y"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1-5 ปี"
-                    android:id="@+id/cb_age_1to5y"/>
+                    android:text="1-5 ปี" />
+
                 <CheckBox
+                    android:id="@+id/cb_age_5to10y"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5-10 ปี"
-                    android:id="@+id/cb_age_5to10y"/>
+                    android:text="5-10 ปี" />
+
                 <CheckBox
+                    android:id="@+id/cb_age_10to15y"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10-15 ปี"
-                    android:id="@+id/cb_age_10to15y"/>
+                    android:text="10-15 ปี" />
             </LinearLayout>
         </LinearLayout>
 
@@ -160,30 +176,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ขนาด"/>
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:gravity="right"
+                android:text="ขนาด" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/rd_size_s"
-                    android:text="S"/>
-                <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="S" />
+
+                <RadioButton
                     android:id="@+id/rd_size_m"
-                    android:text="M"/>
-                <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="M" />
+
+                <RadioButton
                     android:id="@+id/rd_size_l"
-                    android:text="L"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="L" />
             </LinearLayout>
         </LinearLayout>
 
@@ -191,10 +212,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="สถานที่"/>
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:gravity="right|center_vertical"
+                android:text="สถานที่" />
+
             <Spinner
                 android:id="@+id/sp_location"
                 android:layout_width="match_parent"
@@ -203,16 +227,21 @@
                 android:spinnerMode="dropdown" />
             //ยังไม่มีปุ่ม +
             //อันนี้คือปุ่มแอดแต่ยังไม่เสร็จ
+
             <ImageButton
+                android:id="@+id/btn_location_add"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btn_location_add"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <Button
-            android:layout_width="wrap_content"
+            android:id="@+id/pet_search"
+            android:layout_width="173dp"
             android:layout_height="wrap_content"
-            android:text="ค้นหา"/>
-
+            android:baselineAligned="false"
+            android:text="ค้นหา"
+            android:background="@color/colorPrimary"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:onClick="petFinalSelect"/>
     </LinearLayout>
 </RelativeLayout>
