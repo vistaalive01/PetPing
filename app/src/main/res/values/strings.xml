@@ -10,7 +10,7 @@
     <string name="petHealth">Health</string>
     <string name="petDOB">DOB</string>
     <string-array name="breed_array">
-        <item>พุดเดิ้ลพันธุ์ผสม</item>
+        <item>พุดเดิ้ลผสม</item>
         <item>ไทยผสม</item>
         <item>ไทย</item>
     </string-array>
