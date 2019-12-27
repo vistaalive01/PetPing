@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,11 +40,14 @@ public class SearchFragment extends Fragment {
     private RadioButton maleBtn;
     private RadioButton femaleBtn;
     private Button searchButton;
+    private RadioGroup radioGroupSex;
+    private RadioButton radioButton;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private String breed;
+    private String color;
+    private String sex;
     private List<String> petSearchType = new ArrayList<>();
-    private List<String> breedSearchType = new ArrayList<>();
     private List<String> searchResult = new ArrayList<>();
     private ArrayAdapter<CharSequence> breedAdapter;
     @Nullable
@@ -71,6 +75,7 @@ public class SearchFragment extends Fragment {
         colorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinColor.setAdapter(colorAdapter);
 
+        radioGroupSex = temp.findViewById(R.id.rd_sex);
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,12 +83,23 @@ public class SearchFragment extends Fragment {
                 String dog = dogBox.getText().toString();
                 String cat = catBox.getText().toString();
                 String rabbit = rabbitBox.getText().toString();
-                petTypeChoose(dog, cat, rabbit);
 
-                String breed1 = breedAdapter.getItem(0).toString();
-                String breed2 = breedAdapter.getItem(1).toString();
-                String breed3 = breedAdapter.getItem(2).toString();
+                petTypeChoose(dog, cat, rabbit);
                 petBreedChoose();
+                petColorChoose();
+
+                int radioSex = radioGroupSex.getCheckedRadioButtonId();
+                radioButton = temp.findViewById(radioSex);
+                if(radioButton == temp.findViewById(R.id.rd_male)){
+                    sex = maleBtn.getText().toString();
+                    searchResult.add(sex);
+                    Log.d("Sex", sex);
+                }
+                if(radioButton == temp.findViewById(R.id.rd_female)){
+                    sex = femaleBtn.getText().toString();
+                    searchResult.add(sex);
+                    Log.d("Sex", sex);
+                }
                 searchPetResult();
                 searchResult.clear();
             }
@@ -93,21 +109,22 @@ public class SearchFragment extends Fragment {
     }
 
 
+    private void petColorChoose() {
+        color = spinColor.getSelectedItem().toString();
+        if(color != "อื่นๆ"){
+            searchResult.add(color);
+        }
+        else searchResult.remove(color);
+    }
 
-   private void petBreedChoose() {
-        spinBreed.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                breed = breedAdapter.getItem(position).toString();
-                breedSearchType.add(breed);
-                searchResult.add(breed);
-                Log.d("Breed", breed);
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-        });
+    private void petBreedChoose() {
+
+       breed = spinBreed.getSelectedItem().toString();
+       if(breed != "อื่นๆ"){
+           searchResult.add(breed);
+       }
+       else searchResult.remove(breed);
 
     }
 
@@ -139,10 +156,11 @@ public class SearchFragment extends Fragment {
     }
 
     private void searchPetResult(){
-
         for(int i = 0; i < searchResult.size(); i++){
             db.collection("Pet")
-                    .whereEqualTo("Breed","ไทย")
+                    .whereEqualTo("Breed", breed)
+                    .whereEqualTo("Color", color)
+                    .whereEqualTo("Sex", sex)
                     .whereIn("Type", Arrays.asList(searchResult.get(i)))
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

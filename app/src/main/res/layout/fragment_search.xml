@@ -116,17 +116,25 @@
                 android:gravity="right|center_vertical"
                 android:text="เพศ" />
 
-            <RadioButton
-                android:id="@+id/rd_male"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ผู้" />
 
-            <RadioButton
-                android:id="@+id/rd_female"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="เมีย" />
+            <RadioGroup
+                android:id="@+id/rd_sex"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <RadioButton
+                    android:id="@+id/rd_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ผู้" />
+
+                <RadioButton
+                    android:id="@+id/rd_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="เมีย" />
+
+            </RadioGroup>
 
         </LinearLayout>
 
