@@ -10,11 +10,13 @@
     <string name="petHealth">Health</string>
     <string name="petDOB">DOB</string>
     <string-array name="breed_array">
+        <item>เลือกสายพันธุ์</item>
         <item>พุดเดิ้ลผสม</item>
         <item>ไทยผสม</item>
         <item>ไทย</item>
     </string-array>
     <string-array name="color_array">
+        <item>เลือกสี</item>
         <item>น้ำตาล</item>
         <item>เทา</item>
         <item>ดำ</item>

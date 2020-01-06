@@ -59,28 +59,28 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal">-->
 
-            <TextView
+            <!--<TextView-->
 
-                android:id="@+id/txt_breed"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:gravity="right|center_vertical"
-                android:text="สายพันธุ์" />
+                <!--android:id="@+id/txt_breed"-->
+                <!--android:layout_width="100dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:gravity="right|center_vertical"-->
+                <!--android:text="สายพันธุ์" />-->
 
-            <Spinner
-                android:id="@+id/breed_spin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:drawable/btn_dropdown"
-                android:spinnerMode="dropdown" />
+            <!--<Spinner-->
+                <!--android:id="@+id/breed_spin"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@android:drawable/btn_dropdown"-->
+                <!--android:spinnerMode="dropdown" />-->
 
-            //ยังไม่มีปุ่ม + กับ tag ที่ user เลือก
-        </LinearLayout>
+            <!--//ยังไม่มีปุ่ม + กับ tag ที่ user เลือก-->
+        <!--</LinearLayout>-->
 
 
         <LinearLayout
