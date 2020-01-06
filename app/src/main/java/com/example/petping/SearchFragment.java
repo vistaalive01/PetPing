@@ -51,8 +51,10 @@ public class SearchFragment extends Fragment {
     private String breed;
     private String color;
     private String sex;
-    private List<String> petSearchType = new ArrayList<>();
+    private int i;
+    private List<String> petSearchType;
     private List<String> searchResult = new ArrayList<>();
+    private PetSearch petSearch;
     private ArrayAdapter<CharSequence> breedAdapter;
     @Nullable
     @Override
@@ -105,12 +107,10 @@ public class SearchFragment extends Fragment {
                 if(radioButton == temp.findViewById(R.id.rd_male)){
                     sex = maleBtn.getText().toString();
                     searchResult.add(sex);
-                    Log.d("Sex", sex);
                 }
                 if(radioButton == temp.findViewById(R.id.rd_female)){
                     sex = femaleBtn.getText().toString();
                     searchResult.add(sex);
-                    Log.d("Sex", sex);
                 }
                 searchPetResult();
                 searchResult.clear();
@@ -141,28 +141,20 @@ public class SearchFragment extends Fragment {
 //    }
 
     private void petTypeChoose(String dog, String cat, String rabbit) {
+        petSearchType = new ArrayList<>();
         if(dogBox.isChecked()){
             petSearchType.add(dog);
             searchResult.add(dog);
-        }
-        else{
-            petSearchType.remove(dog);
         }
 
         if(catBox.isChecked()){
             petSearchType.add(cat);
             searchResult.add(cat);
         }
-        else{
-            petSearchType.remove(cat);
-        }
 
         if(rabbitBox.isChecked()) {
             petSearchType.add(rabbit);
             searchResult.add(rabbit);
-        }
-        else {
-            petSearchType.remove(rabbit);
         }
 
     }
@@ -170,25 +162,30 @@ public class SearchFragment extends Fragment {
     private void searchPetResult(){
         //Choose every filter
         if (!petSearchType.isEmpty() && !color.equals("เลือกสี") && sex != null) {
-            for(int i = 0; i < searchResult.size(); i++){
+            for(i = 0; i < petSearchType.size(); i++){
                 db.collection("Pet")
                         .whereEqualTo("Color", color)
                         .whereEqualTo("Sex", sex)
-                        .whereIn("Type", Arrays.asList(searchResult.get(i)))
+                        .whereIn("Type", Arrays.asList(petSearchType.get(i)))
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
+//                                    petSearch = new PetSearch(petSearchType.get(i), color, sex,"age");
+//                                    Log.d("DataTest2", petSearch.getType());
+
                                     for (QueryDocumentSnapshot document : task.getResult()) {
-                                        Log.d("DataTest", document.getId() + " => " + document.getData());
+                                        Log.d("DataTest", document.getId()+ " => " + document.getString(sex));
                                     }
                                 } else {
                                     Log.d("Error", "Error getting documents: ", task.getException());
                                 }
                             }
                         });
+
             }
+
         }
         //Choose Type
         if(!petSearchType.isEmpty() ){
