@@ -1,5 +1,6 @@
 package com.example.petping;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,6 +29,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class SearchFragment extends Fragment {
 
@@ -114,6 +116,10 @@ public class SearchFragment extends Fragment {
                 }
                 searchPetResult();
                 searchResult.clear();
+
+                final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(getId(), new PetSearchResult());
+                ft.commit();
             }
         });
 
@@ -159,31 +165,30 @@ public class SearchFragment extends Fragment {
 
     }
 
-    private void searchPetResult(){
+    public void searchPetResult(){
         //Choose every filter
+
         if (!petSearchType.isEmpty() && !color.equals("เลือกสี") && sex != null) {
             for(i = 0; i < petSearchType.size(); i++){
                 db.collection("Pet")
-                        .whereEqualTo("Color", color)
-                        .whereEqualTo("Sex", sex)
-                        .whereIn("Type", Arrays.asList(petSearchType.get(i)))
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-//                                    petSearch = new PetSearch(petSearchType.get(i), color, sex,"age");
-//                                    Log.d("DataTest2", petSearch.getType());
+                .whereEqualTo("Color", color)
+                .whereEqualTo("Sex", sex)
+                .whereIn("Type", Arrays.asList(petSearchType.get(i)))
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            petSearch = new PetSearch(petSearchType.get(i), color, sex,"age");
 
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        Log.d("DataTest", document.getId()+ " => " + document.getString(sex));
-                                    }
-                                } else {
-                                    Log.d("Error", "Error getting documents: ", task.getException());
-                                }
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("DataTest", document.getId() + " => " + document.getData());
                             }
-                        });
-
+                        } else {
+                            Log.d("Error", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
             }
 
         }
