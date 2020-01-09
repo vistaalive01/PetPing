@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                             fragment = new ShelterFragment();
                             break;
                         case R.id.nav_search:
-                            fragment = new SearchFragment();
+                            fragment = new SearchFragment(getApplicationContext());
                             break;
                         case R.id.nav_status:
                             fragment = new StatusFragment();

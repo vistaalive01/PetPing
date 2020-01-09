@@ -1,17 +1,37 @@
 package com.example.petping;
 
 public class PetSearch {
+//    private String ID;
+    private String name;
     private String type;
     private String colour;
     private String sex;
     private String age;
 
 
-    public PetSearch(String type, String colour, String sex, String age) {
+    public PetSearch( String type, String colour, String sex, String age) {
+//        this.ID = ID;
+//        this.name = name;
         this.type = type;
         this.colour = colour;
         this.sex = sex;
         this.age = age;
+    }
+
+//    public String getID() {
+//        return ID;
+//    }
+//
+//    public void setID(String ID) {
+//        this.ID = ID;
+//    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getType() {
@@ -29,6 +49,7 @@ public class PetSearch {
     public String getAge() {
         return age;
     }
+
     public void setType(String type) {
         this.type = type;
     }

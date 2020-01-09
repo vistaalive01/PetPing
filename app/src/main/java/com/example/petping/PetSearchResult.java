@@ -25,11 +25,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class PetSearchResult extends Fragment {
-    private ListView listView;
-   // private PetSearchResultAdapter petAdapter;
+    private List<PetSearch> petSearchList ;
     private SearchFragment searchFragment;
-    private PetSearch pet ;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    private ListView listView;
+    private PetListViewAdapter petAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,12 +37,13 @@ public class PetSearchResult extends Fragment {
         // Inflate the layout for this fragment
         final View temp = inflater.inflate(R.layout.fragment_pet_search_result, null);
 
-        searchFragment.searchPetResult();
-//        Log.d("Color: ", pet.getSex());
+        searchFragment = new SearchFragment(getContext());
 
-//        listView = temp.findViewById(R.id.listview_pet);
-//        petAdapter = new PetSearchResultAdapter(getContext(), petList);
-//        listView.setAdapter(petAdapter);
+        listView = temp.findViewById(R.id.listview_pet);
+        petSearchList = searchFragment.sendValue();
+        petAdapter = new PetListViewAdapter(getContext(), petSearchList);
+        listView.setAdapter(petAdapter);
+        Log.d("PetList2", petSearchList.toString());
         return temp;
     }
 

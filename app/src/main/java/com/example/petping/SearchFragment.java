@@ -1,6 +1,9 @@
 package com.example.petping;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -54,10 +57,20 @@ public class SearchFragment extends Fragment {
     private String color;
     private String sex;
     private int i;
-    private List<String> petSearchType;
+    private List<String> petSearchType = new ArrayList<>();
     private List<String> searchResult = new ArrayList<>();
-    private PetSearch petSearch;
     private ArrayAdapter<CharSequence> breedAdapter;
+    private String name;
+    private List<PetSearch> petList = new ArrayList<>() ;
+    private PetSearch petSearch;
+    private Context myContext = null;
+
+
+    @SuppressLint("ValidFragment")
+    public SearchFragment(Context context) {
+        myContext = context;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -115,10 +128,11 @@ public class SearchFragment extends Fragment {
                     searchResult.add(sex);
                 }
                 searchPetResult();
-                searchResult.clear();
+                sendValue();
+//                searchResult.clear();
 
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(getId(), new PetSearchResult());
+                final FragmentTransaction replace = ft.replace(getId(), new PetSearchResult());
                 ft.commit();
             }
         });
@@ -164,33 +178,41 @@ public class SearchFragment extends Fragment {
         }
 
     }
-
-    public void searchPetResult(){
+    private void searchPetResult(){
         //Choose every filter
-
         if (!petSearchType.isEmpty() && !color.equals("เลือกสี") && sex != null) {
             for(i = 0; i < petSearchType.size(); i++){
                 db.collection("Pet")
-                .whereEqualTo("Color", color)
-                .whereEqualTo("Sex", sex)
-                .whereIn("Type", Arrays.asList(petSearchType.get(i)))
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            petSearch = new PetSearch(petSearchType.get(i), color, sex,"age");
+                        .whereEqualTo("Color", color)
+                        .whereEqualTo("Sex", sex)
+                        .whereIn("Type", Arrays.asList(petSearchType.get(i)))
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        for(i = 0; i < petSearchType.size(); i++){
+                                            name = document.get("Name").toString();
+//                                            Log.d("DataTest", document.getId() + " => " + name);
+                                           petSearch = new PetSearch(petSearchType.get(i), name, sex,"age");
+                                            petList.add(petSearch);
+                                            Log.d("DataTest2", petList.toString());
+                                        }
+                                    }
+                                    //return petList;
+                                   // sendValue();
+                                   // Log.d("PetList", petList.toString());
+                                } else {
+                                    Log.d("Error", "Error getting documents: ", task.getException());
+                                }
 
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("DataTest", document.getId() + " => " + document.getData());
                             }
-                        } else {
-                            Log.d("Error", "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
-            }
 
+                        });
+
+
+            }
         }
         //Choose Type
         if(!petSearchType.isEmpty() ){
@@ -223,7 +245,6 @@ public class SearchFragment extends Fragment {
                             .whereIn("Type", Arrays.asList(searchResult.get(i)))
                             .get()
                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                     if (task.isSuccessful()) {
                                         for (QueryDocumentSnapshot document : task.getResult()) {
@@ -237,7 +258,9 @@ public class SearchFragment extends Fragment {
                 }
             }
         }
-
     }
 
+    public List<PetSearch> sendValue() {
+         return petList;
+    }
 }
