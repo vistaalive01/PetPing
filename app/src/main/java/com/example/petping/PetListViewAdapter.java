@@ -38,14 +38,16 @@ class PetListViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = View.inflate(context, R.layout.pet_listview_adapter, null);
 //        ImageView imageView;
-        TextView textViewName, textViewSex;
+        TextView textViewName, textViewSex, textViewAge;
 
 //        imageView = view.findViewById(R.id.adapter_img);
         textViewName = view.findViewById(R.id.adapter_name);
         textViewSex = view.findViewById(R.id.adapter_sex);
+        textViewAge = view.findViewById(R.id.adapter_age);
 
         textViewName.setText(petSearchList.get(position).getName());
-        textViewSex.setText(petSearchList.get(position).getName());
+        textViewSex.setText(petSearchList.get(position).getSex());
+        textViewAge.setText(petSearchList.get(position).getAge());
 
 
         return view;

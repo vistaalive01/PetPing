@@ -1,5 +1,6 @@
 package com.example.petping;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,8 +25,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+
 public class PetSearchResult extends Fragment {
-    private List<PetSearch> petSearchList ;
+    private ArrayList<PetSearch> petSearchList ;
     private SearchFragment searchFragment;
 
     private ListView listView;
@@ -37,10 +39,13 @@ public class PetSearchResult extends Fragment {
         // Inflate the layout for this fragment
         final View temp = inflater.inflate(R.layout.fragment_pet_search_result, null);
 
-        searchFragment = new SearchFragment(getContext());
+        if(getArguments() != null){
+            petSearchList = (ArrayList<PetSearch>)getArguments().getSerializable("petL");
+        }
+        //searchFragment = new SearchFragment();
+        listView = temp.findViewById(R.id.listView_pet);
+       // petSearchList = searchFragment.sendValue();
 
-        listView = temp.findViewById(R.id.listview_pet);
-        petSearchList = searchFragment.sendValue();
         petAdapter = new PetListViewAdapter(getContext(), petSearchList);
         listView.setAdapter(petAdapter);
         Log.d("PetList2", petSearchList.toString());

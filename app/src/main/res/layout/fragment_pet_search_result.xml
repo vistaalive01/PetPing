@@ -6,7 +6,7 @@
     tools:context=".PetSearchResult">
 
     <ListView
-        android:id="@+id/listview_pet"
+        android:id="@+id/listView_pet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:columnWidth="90dp"

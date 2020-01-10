@@ -1,15 +1,12 @@
 package com.example.petping;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -18,9 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -33,6 +28,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
 
 public class SearchFragment extends Fragment {
 
@@ -60,16 +56,19 @@ public class SearchFragment extends Fragment {
     private List<String> petSearchType = new ArrayList<>();
     private List<String> searchResult = new ArrayList<>();
     private ArrayAdapter<CharSequence> breedAdapter;
-    private String name;
-    private List<PetSearch> petList = new ArrayList<>() ;
+    private ArrayList<PetSearch> petList = new ArrayList<>() ;
+    private ArrayList<PetSearch> petListSend = new ArrayList<>() ;
     private PetSearch petSearch;
-    private Context myContext = null;
 
 
-    @SuppressLint("ValidFragment")
-    public SearchFragment(Context context) {
-        myContext = context;
-    }
+    private String petID;
+    private String petName;
+    private String petAge;
+
+
+
+
+
 
     @Nullable
     @Override
@@ -128,12 +127,8 @@ public class SearchFragment extends Fragment {
                     searchResult.add(sex);
                 }
                 searchPetResult();
-                sendValue();
-//                searchResult.clear();
 
-                final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                final FragmentTransaction replace = ft.replace(getId(), new PetSearchResult());
-                ft.commit();
+//                searchResult.clear();
             }
         });
 
@@ -179,7 +174,7 @@ public class SearchFragment extends Fragment {
 
     }
     private void searchPetResult(){
-        //Choose every filter
+                //Choose every filter
         if (!petSearchType.isEmpty() && !color.equals("เลือกสี") && sex != null) {
             for(i = 0; i < petSearchType.size(); i++){
                 db.collection("Pet")
@@ -191,27 +186,31 @@ public class SearchFragment extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        for(i = 0; i < petSearchType.size(); i++){
-                                            name = document.get("Name").toString();
-//                                            Log.d("DataTest", document.getId() + " => " + name);
-                                           petSearch = new PetSearch(petSearchType.get(i), name, sex,"age");
-                                            petList.add(petSearch);
-                                            Log.d("DataTest2", petList.toString());
-                                        }
-                                    }
-                                    //return petList;
-                                   // sendValue();
-                                   // Log.d("PetList", petList.toString());
+                                    setValue(task);
+//                                    final FragmentTransaction ft = getFragmentManager().beginTransaction();
+//                                    final FragmentTransaction replace = ft.replace(getId(), new PetSearchResult());
+//                                    ft.commit();
+//                                    petListSend = new ArrayList<>();
+//                                    for (QueryDocumentSnapshot document : task.getResult()) {
+//                                        for(i = 0; i < petSearchType.size(); i++){
+//                                            petID = document.getId();
+//                                            petName = document.get("Name").toString();
+//                                            petAge = document.get("Age").toString();
+////                                            Log.d("DataTest", document.getId() + " => " + name);
+//                                            petSearch = new PetSearch(petID, petName, petSearchType.get(i), color, sex, petAge);
+//                                            petList.add(petSearch);
+//                                            petListSend.add(petList.get(i));
+//                                            Log.d("PetListSend", petListSend.toString());
+//                                        }
+//
+//                                    }
+
                                 } else {
                                     Log.d("Error", "Error getting documents: ", task.getException());
                                 }
-
                             }
 
                         });
-
-
             }
         }
         //Choose Type
@@ -258,9 +257,37 @@ public class SearchFragment extends Fragment {
                 }
             }
         }
+
     }
 
-    public List<PetSearch> sendValue() {
-         return petList;
+    private void setValue(Task<QuerySnapshot> task) {
+        for (QueryDocumentSnapshot document : task.getResult()) {
+            for(i = 0; i < petSearchType.size(); i++){
+                petID = document.getId();
+                petName = document.get("Name").toString();
+                petAge = document.get("Age").toString();
+//                                            Log.d("DataTest", document.getId() + " => " + name);
+                petSearch = new PetSearch(petID, petName, petSearchType.get(i), color, sex, petAge);
+                petList.add(petSearch);
+//                sendValue();
+            }
+        }
+        PetSearchResult petSearchResult = new PetSearchResult();
+        getFragmentManager().beginTransaction().replace(getId(), petSearchResult).commit();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("petL", petList);
+        petSearchResult.setArguments(bundle);
+
     }
+
+//    public ArrayList<PetSearch> sendValue() {
+//        if(petListSend.size()!= petList.size())
+//        {
+//            for(i=0; i<petSearchType.size(); i++){
+//                petListSend.add(petList.get(i));
+//            }
+//        }
+//        Log.d("PetListSend", petListSend.toString());
+//        return petListSend;
+//    }
 }

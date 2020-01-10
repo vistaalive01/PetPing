@@ -1,7 +1,7 @@
 package com.example.petping;
 
 public class PetSearch {
-//    private String ID;
+    private String ID;
     private String name;
     private String type;
     private String colour;
@@ -9,22 +9,22 @@ public class PetSearch {
     private String age;
 
 
-    public PetSearch( String type, String colour, String sex, String age) {
-//        this.ID = ID;
-//        this.name = name;
+    public PetSearch(String ID, String name, String type, String colour, String sex, String age) {
+        this.ID = ID;
+        this.name = name;
         this.type = type;
         this.colour = colour;
         this.sex = sex;
         this.age = age;
     }
 
-//    public String getID() {
-//        return ID;
-//    }
-//
-//    public void setID(String ID) {
-//        this.ID = ID;
-//    }
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 
     public String getName() {
         return name;
