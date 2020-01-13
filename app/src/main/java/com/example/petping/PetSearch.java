@@ -7,15 +7,25 @@ public class PetSearch {
     private String colour;
     private String sex;
     private String age;
+    private String breed;
 
 
-    public PetSearch(String ID, String name, String type, String colour, String sex, String age) {
+    public PetSearch(String ID, String name, String type, String colour, String sex, String age, String breed) {
         this.ID = ID;
         this.name = name;
         this.type = type;
         this.colour = colour;
         this.sex = sex;
         this.age = age;
+        this.breed = breed;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
     }
 
     public String getID() {

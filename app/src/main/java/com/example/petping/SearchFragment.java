@@ -27,15 +27,18 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
 public class SearchFragment extends Fragment {
 
-    private CheckBox dogBox;
-    private CheckBox catBox;
-    private CheckBox rabbitBox;
-    private CheckBox otherBox;
+    private RadioGroup radioGroupType;
+    private RadioButton dogBtn;
+    private RadioButton catBtn;
+    private RadioButton rabbitBtn;
+    private RadioButton radioButtonType;
+
     private Spinner spinBreed;
     private Spinner spinColor;
     private RadioButton maleBtn;
@@ -49,25 +52,21 @@ public class SearchFragment extends Fragment {
     private CheckBox ageTentoFiveteen;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    private String breed;
+    private String type;
     private String color;
     private String sex;
     private int i;
-    private List<String> petSearchType = new ArrayList<>();
     private List<String> searchResult = new ArrayList<>();
-    private ArrayAdapter<CharSequence> breedAdapter;
-    private ArrayList<PetSearch> petList = new ArrayList<>() ;
-    private ArrayList<PetSearch> petListSend = new ArrayList<>() ;
-    private PetSearch petSearch;
+    private ArrayList<String> petSearchAge = new ArrayList<>();
 
 
     private String petID;
     private String petName;
     private String petAge;
-
-
-
-
+    private String petColor;
+    private String petSex;
+    private String petBreed;
+    private String petType;
 
 
     @Nullable
@@ -76,10 +75,10 @@ public class SearchFragment extends Fragment {
         final View temp = inflater.inflate(R.layout.fragment_search, null);
 
         //Type
-        dogBox = temp.findViewById(R.id.cb_dog);
-        catBox = temp.findViewById(R.id.cb_cat);
-        rabbitBox = temp.findViewById(R.id.cb_rabbit);
-        otherBox = temp.findViewById(R.id.cb_other);
+        dogBtn = temp.findViewById(R.id.rd_dog);
+        catBtn = temp.findViewById(R.id.rd_cat);
+        rabbitBtn = temp.findViewById(R.id.rd_rabbit);
+        radioGroupType = temp.findViewById(R.id.rd_type);
 
         //Sex
         maleBtn = temp.findViewById(R.id.rd_male);
@@ -99,22 +98,25 @@ public class SearchFragment extends Fragment {
         ageFivetoTen = temp.findViewById(R.id.cb_age_5to10y);
         ageTentoFiveteen = temp.findViewById(R.id.cb_age_10to15y);
 
-//        spinBreed = temp.findViewById(R.id.breed_spin);
-//        breedAdapter = ArrayAdapter.createFromResource(getContext(), R.array.breed_array, android.R.layout.simple_spinner_item);
-//        breedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinBreed.setAdapter(breedAdapter);
-
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String dog = dogBox.getText().toString();
-                String cat = catBox.getText().toString();
-                String rabbit = rabbitBox.getText().toString();
+                //Type
+                int radioType = radioGroupType.getCheckedRadioButtonId();
+                radioButtonType = temp.findViewById(radioType);
+                if(radioButtonType == temp.findViewById(R.id.rd_dog)){
+                    type = dogBtn.getText().toString();
+                }
+                if(radioButtonType == temp.findViewById(R.id.rd_cat)){
+                    type = catBtn.getText().toString();
+                }
+                if(radioButtonType == temp.findViewById(R.id.rd_rabbit)){
+                    type = rabbitBtn.getText().toString();
+                }
 
-                petTypeChoose(dog, cat, rabbit);
-//                petBreedChoose();
                 petColorChoose();
+                petAgeChoose();
 
                 int radioSex = radioGroupSex.getCheckedRadioButtonId();
                 radioButton = temp.findViewById(radioSex);
@@ -126,9 +128,9 @@ public class SearchFragment extends Fragment {
                     sex = femaleBtn.getText().toString();
                     searchResult.add(sex);
                 }
-                searchPetResult();
 
-//                searchResult.clear();
+                searchPetResult();
+                searchResult.clear();
             }
         });
 
@@ -144,150 +146,120 @@ public class SearchFragment extends Fragment {
         else searchResult.remove(color);
     }
 
-
-//    private void petBreedChoose() {
-//
-//        breed = spinBreed.getSelectedItem().toString();
-//        if(breed != "อื่นๆ"){
-//            searchResult.add(breed);
-//        }
-//        else searchResult.remove(breed);
-//
-//    }
-
-    private void petTypeChoose(String dog, String cat, String rabbit) {
-        petSearchType = new ArrayList<>();
-        if(dogBox.isChecked()){
-            petSearchType.add(dog);
-            searchResult.add(dog);
+    private void petAgeChoose() {
+        if (ageFivetoTen.isChecked()) {
+            petSearchAge.add("6 ปี");
+            petSearchAge.add("7 ปี");
+            petSearchAge.add("8 ปี");
+            petSearchAge.add("9 ปี");
+            petSearchAge.add("10 ปี");
         }
-
-        if(catBox.isChecked()){
-            petSearchType.add(cat);
-            searchResult.add(cat);
-        }
-
-        if(rabbitBox.isChecked()) {
-            petSearchType.add(rabbit);
-            searchResult.add(rabbit);
-        }
-
     }
+
+
+
+
     private void searchPetResult(){
-                //Choose every filter
-        if (!petSearchType.isEmpty() && !color.equals("เลือกสี") && sex != null) {
-            for(i = 0; i < petSearchType.size(); i++){
+        //Choose every filter
+        if (!petSearchAge.isEmpty() && type != null && !color.equals("เลือกสี") && sex != null) {
+            for(i = 0; i < petSearchAge.size(); i++){
                 db.collection("Pet")
-                        .whereEqualTo("Color", color)
+                    .whereEqualTo("Color", color)
+                    .whereEqualTo("Sex", sex)
+                    .whereEqualTo("Type", type)
+                    .whereEqualTo("Age", petSearchAge.get(i))
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                setValue(task);
+                            } else {
+                                Log.d("Error", "Error getting documents: ", task.getException());
+                            }
+                        }
+
+                    });
+            }
+        }
+
+        //Not Choose "Color"
+        if (type != null && color.equals("เลือกสี") && sex != null && !petSearchAge.isEmpty()) {
+            for(i = 0; i < petSearchAge.size(); i++){
+                db.collection("Pet")
                         .whereEqualTo("Sex", sex)
-                        .whereIn("Type", Arrays.asList(petSearchType.get(i)))
+                        .whereEqualTo("Type", type)
+                        .whereEqualTo("Age", petSearchAge.get(i))
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     setValue(task);
-//                                    final FragmentTransaction ft = getFragmentManager().beginTransaction();
-//                                    final FragmentTransaction replace = ft.replace(getId(), new PetSearchResult());
-//                                    ft.commit();
-//                                    petListSend = new ArrayList<>();
-//                                    for (QueryDocumentSnapshot document : task.getResult()) {
-//                                        for(i = 0; i < petSearchType.size(); i++){
-//                                            petID = document.getId();
-//                                            petName = document.get("Name").toString();
-//                                            petAge = document.get("Age").toString();
-////                                            Log.d("DataTest", document.getId() + " => " + name);
-//                                            petSearch = new PetSearch(petID, petName, petSearchType.get(i), color, sex, petAge);
-//                                            petList.add(petSearch);
-//                                            petListSend.add(petList.get(i));
-//                                            Log.d("PetListSend", petListSend.toString());
-//                                        }
-//
-//                                    }
-
                                 } else {
                                     Log.d("Error", "Error getting documents: ", task.getException());
                                 }
                             }
-
                         });
             }
         }
-        //Choose Type
-        if(!petSearchType.isEmpty() ){
-            //Not Choose Colour
-            if(color.equals("เลือกสี") && sex != null){
-                for(int i = 0; i < searchResult.size(); i++){
-                    db.collection("Pet")
-                            .whereEqualTo("Sex", sex)
-                            .whereIn("Type", Arrays.asList(searchResult.get(i)))
-                            .get()
-                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        for (QueryDocumentSnapshot document : task.getResult()) {
-                                            Log.d("DataTest", document.getId() + " => " + document.getData());
-                                        }
-                                    } else {
-                                        Log.d("Error", "Error getting documents: ", task.getException());
-                                    }
+        //Not Choose "Sex"
+        if (type != null && !color.equals("เลือกสี") && sex == null&& !petSearchAge.isEmpty()) {
+            for(i = 0; i < petSearchAge.size(); i++){
+                db.collection("Pet")
+                        .whereEqualTo("Color", color)
+                        .whereEqualTo("Type", type)
+                        .whereEqualTo("Age", petSearchAge.get(i))
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    setValue(task);
+                                } else {
+                                    Log.d("Error", "Error getting documents: ", task.getException());
                                 }
-                            });
-                }
-            }
-            //Not Choose Sex
-            if(!color.equals("เลือกสี") && sex == null){
-                for(int i = 0; i < searchResult.size(); i++){
-                    db.collection("Pet")
-                            .whereEqualTo("Color", color)
-                            .whereIn("Type", Arrays.asList(searchResult.get(i)))
-                            .get()
-                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        for (QueryDocumentSnapshot document : task.getResult()) {
-                                            Log.d("DataTest", document.getId() + " => " + document.getData());
-                                        }
-                                    } else {
-                                        Log.d("Error", "Error getting documents: ", task.getException());
-                                    }
-                                }
-                            });
-                }
+                            }
+                        });
             }
         }
 
+        //Not Choose "Color" and "Sex"
+        if (type != null && color.equals("เลือกสี") && sex == null && !petSearchAge.isEmpty()) {
+            for(i = 0; i < petSearchAge.size(); i++){
+                db.collection("Pet")
+                        .whereEqualTo("Type", type)
+                        .whereEqualTo("Age", petSearchAge.get(i))
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    setValue(task);
+                                } else {
+                                    Log.d("Error", "Error getting documents: ", task.getException());
+                                }
+                            }
+                        });
+            }
+        }
     }
 
     private void setValue(Task<QuerySnapshot> task) {
+        ArrayList<PetSearch> petList = new ArrayList<>();
         for (QueryDocumentSnapshot document : task.getResult()) {
-            for(i = 0; i < petSearchType.size(); i++){
-                petID = document.getId();
-                petName = document.get("Name").toString();
-                petAge = document.get("Age").toString();
-//                                            Log.d("DataTest", document.getId() + " => " + name);
-                petSearch = new PetSearch(petID, petName, petSearchType.get(i), color, sex, petAge);
-                petList.add(petSearch);
-//                sendValue();
-            }
+            PetSearch petSearch = new PetSearch(document.getId(), document.get("Name").toString(), document.get("Type").toString(),
+                    document.get("Color").toString(), document.get("Sex").toString(), document.get("Age").toString(), document.get("Breed").toString());
+            petList.add(petSearch);
+            Log.d("DataTest", String.valueOf(document.getData()));
         }
+        Log.d("PetList", petList.toString());
+
         PetSearchResult petSearchResult = new PetSearchResult();
-        getFragmentManager().beginTransaction().replace(getId(), petSearchResult).commit();
         Bundle bundle = new Bundle();
         bundle.putSerializable("petL", petList);
         petSearchResult.setArguments(bundle);
-
+        getFragmentManager().beginTransaction().replace(getId(), petSearchResult).commit();
     }
 
-//    public ArrayList<PetSearch> sendValue() {
-//        if(petListSend.size()!= petList.size())
-//        {
-//            for(i=0; i<petSearchType.size(); i++){
-//                petListSend.add(petList.get(i));
-//            }
-//        }
-//        Log.d("PetListSend", petListSend.toString());
-//        return petListSend;
-//    }
 }

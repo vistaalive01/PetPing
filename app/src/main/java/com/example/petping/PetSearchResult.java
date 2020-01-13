@@ -28,8 +28,6 @@ import java.util.List;
 
 public class PetSearchResult extends Fragment {
     private ArrayList<PetSearch> petSearchList ;
-    private SearchFragment searchFragment;
-
     private ListView listView;
     private PetListViewAdapter petAdapter;
 
@@ -42,9 +40,7 @@ public class PetSearchResult extends Fragment {
         if(getArguments() != null){
             petSearchList = (ArrayList<PetSearch>)getArguments().getSerializable("petL");
         }
-        //searchFragment = new SearchFragment();
         listView = temp.findViewById(R.id.listView_pet);
-       // petSearchList = searchFragment.sendValue();
 
         petAdapter = new PetListViewAdapter(getContext(), petSearchList);
         listView.setAdapter(petAdapter);
