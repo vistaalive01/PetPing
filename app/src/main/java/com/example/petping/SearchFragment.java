@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -55,18 +56,9 @@ public class SearchFragment extends Fragment {
     private String type;
     private String color;
     private String sex;
-    private int i;
-    private List<String> searchResult = new ArrayList<>();
     private ArrayList<String> petSearchAge = new ArrayList<>();
     private ArrayList<String> ageSearch = new ArrayList<>();
-
-    private String petID;
-    private String petName;
-    private String petAge;
-    private String petColor;
-    private String petSex;
-    private String petBreed;
-    private String petType;
+    private PetSearch petSearch;
 
 
     @Nullable
@@ -115,22 +107,19 @@ public class SearchFragment extends Fragment {
                     type = rabbitBtn.getText().toString();
                 }
 
-                petColorChoose();
+                color = spinColor.getSelectedItem().toString();
                 petAgeChoose();
 
                 int radioSex = radioGroupSex.getCheckedRadioButtonId();
                 radioButton = temp.findViewById(radioSex);
                 if(radioButton == temp.findViewById(R.id.rd_male)){
                     sex = maleBtn.getText().toString();
-                    searchResult.add(sex);
                 }
                 if(radioButton == temp.findViewById(R.id.rd_female)){
                     sex = femaleBtn.getText().toString();
-                    searchResult.add(sex);
                 }
 
                 searchPetResult();
-                searchResult.clear();
             }
         });
 
@@ -138,15 +127,17 @@ public class SearchFragment extends Fragment {
     }
 
 
-    private void petColorChoose() {
-        color = spinColor.getSelectedItem().toString();
-        if(color != "อื่นๆ"){
-            searchResult.add(color);
-        }
-        else searchResult.remove(color);
-    }
-
     private void petAgeChoose() {
+        if (ageLeastOne.isChecked()) {
+            petSearchAge.add("0 ปี");
+        }
+        if (ageOnetoFive.isChecked()) {
+            petSearchAge.add("1 ปี");
+            petSearchAge.add("2 ปี");
+            petSearchAge.add("3 ปี");
+            petSearchAge.add("4 ปี");
+            petSearchAge.add("5 ปี");
+        }
         if (ageFivetoTen.isChecked()) {
             petSearchAge.add("6 ปี");
             petSearchAge.add("7 ปี");
@@ -154,20 +145,48 @@ public class SearchFragment extends Fragment {
             petSearchAge.add("9 ปี");
             petSearchAge.add("10 ปี");
         }
+        if (ageTentoFiveteen.isChecked()) {
+            petSearchAge.add("11 ปี");
+            petSearchAge.add("12 ปี");
+            petSearchAge.add("13 ปี");
+            petSearchAge.add("14 ปี");
+            petSearchAge.add("15 ปี");
+        }
     }
 
 
-
-
     private void searchPetResult(){
+        if(type == null){
+            Toast.makeText(getContext(),"กรุณาเลือกประเภทด้วยค่ะ",Toast.LENGTH_LONG).show();
+        }
+
         //Choose every filter
         if (!petSearchAge.isEmpty() && type != null && !color.equals("เลือกสี") && sex != null) {
-            for(i = 0; i < petSearchAge.size(); i++){
-                db.collection("Pet")
-                    .whereEqualTo("Color", color)
-                    .whereEqualTo("Sex", sex)
+            db.collection("Pet")
+                .whereEqualTo("Type", type)
+                .whereEqualTo("Color", color)
+                .whereEqualTo("Sex", sex)
+                .whereIn("Age", petSearchAge)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            setValue(task);
+                        } else {
+                            Log.d("Error", "Error getting documents: ", task.getException());
+                        }
+                    }
+
+                });
+        }
+
+        //Not Choose "Color"
+        if (type != null && color.equals("เลือกสี") && sex != null && !petSearchAge.isEmpty()) {
+            db.collection("Pet")
                     .whereEqualTo("Type", type)
-                    .whereEqualTo("Age", petSearchAge.get(i))
+                    .whereEqualTo("Sex", sex)
+                    .whereIn("Age", petSearchAge)
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
@@ -178,70 +197,115 @@ public class SearchFragment extends Fragment {
                                 Log.d("Error", "Error getting documents: ", task.getException());
                             }
                         }
-
                     });
-            }
-        }
-
-        //Not Choose "Color"
-        if (type != null && color.equals("เลือกสี") && sex != null && !petSearchAge.isEmpty()) {
-            for(i = 0; i < petSearchAge.size(); i++){
-                db.collection("Pet")
-                        .whereEqualTo("Sex", sex)
-                        .whereEqualTo("Type", type)
-                        .whereEqualTo("Age", petSearchAge.get(i))
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    setValue(task);
-                                } else {
-                                    Log.d("Error", "Error getting documents: ", task.getException());
-                                }
-                            }
-                        });
-            }
         }
         //Not Choose "Sex"
         if (type != null && !color.equals("เลือกสี") && sex == null&& !petSearchAge.isEmpty()) {
-            for(i = 0; i < petSearchAge.size(); i++){
-                db.collection("Pet")
-                        .whereEqualTo("Color", color)
-                        .whereEqualTo("Type", type)
-                        .whereEqualTo("Age", petSearchAge.get(i))
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    setValue(task);
-                                } else {
-                                    Log.d("Error", "Error getting documents: ", task.getException());
-                                }
+            db.collection("Pet")
+                    .whereEqualTo("Type", type)
+                    .whereEqualTo("Color", color)
+                    .whereIn("Age", petSearchAge)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                setValue(task);
+                            } else {
+                                Log.d("Error", "Error getting documents: ", task.getException());
                             }
-                        });
-            }
+                        }
+                    });
+        }
+
+        //Not Choose "Age"
+        if (type != null && !color.equals("เลือกสี") && sex != null && petSearchAge.isEmpty()) {
+            db.collection("Pet")
+                    .whereEqualTo("Type", type)
+                    .whereEqualTo("Color", color)
+                    .whereEqualTo("Sex", sex)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                setValue(task);
+                            } else {
+                                Log.d("Error", "Error getting documents: ", task.getException());
+                            }
+                        }
+                    });
         }
 
         //Not Choose "Color" and "Sex"
         if (type != null && color.equals("เลือกสี") && sex == null && !petSearchAge.isEmpty()) {
-            for(i = 0; i < petSearchAge.size(); i++){
-                db.collection("Pet")
-                        .whereEqualTo("Type", type)
-                        .whereEqualTo("Age", petSearchAge.get(i))
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    setValue(task);
-                                } else {
-                                    Log.d("Error", "Error getting documents: ", task.getException());
-                                }
+            db.collection("Pet")
+                    .whereEqualTo("Type", type)
+                    .whereIn("Age", petSearchAge)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                setValue(task);
+                            } else {
+                                Log.d("Error", "Error getting documents: ", task.getException());
                             }
-                        });
-            }
+                        }
+                    });
+        }
+
+        //Not Choose "Color" and "Age"
+        if (type != null && color.equals("เลือกสี") && sex != null && petSearchAge.isEmpty()) {
+            db.collection("Pet")
+                    .whereEqualTo("Type", type)
+                    .whereEqualTo("Sex", sex)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                setValue(task);
+                            } else {
+                                Log.d("Error", "Error getting documents: ", task.getException());
+                            }
+                        }
+                    });
+        }
+
+        //Not Choose "Sex" and "Age"
+        if (type != null && !color.equals("เลือกสี") && sex == null && petSearchAge.isEmpty()) {
+            db.collection("Pet")
+                    .whereEqualTo("Type", type)
+                    .whereEqualTo("Color", color)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                setValue(task);
+                            } else {
+                                Log.d("Error", "Error getting documents: ", task.getException());
+                            }
+                        }
+                    });
+        }
+
+        //Not Choose "Color", "Sex" and "Age"
+        if (type != null && color.equals("เลือกสี") && sex == null && petSearchAge.isEmpty()) {
+            db.collection("Pet")
+                    .whereEqualTo("Type", type)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                setValue(task);
+                            } else {
+                                Log.d("Error", "Error getting documents: ", task.getException());
+                            }
+                        }
+                    });
         }
     }
 
@@ -249,16 +313,12 @@ public class SearchFragment extends Fragment {
         ArrayList<PetSearch> petList = new ArrayList<>();
 
         for (QueryDocumentSnapshot document : task.getResult()) {
-
-            PetSearch petSearch = new PetSearch(document.getId(), document.get("Name").toString(), document.get("Type").toString(),
+            petSearch = new PetSearch(document.getId(), document.get("Name").toString(), document.get("Type").toString(),
                     document.get("Color").toString(), document.get("Sex").toString(), document.get("Age").toString(), document.get("Breed").toString());
             petList.add(petSearch);
-
-            Log.d("DataTest", String.valueOf(document.getData()));
         }
 
-        Log.d("PetList", petList.toString());
-
+        Log.d("Size ", String.valueOf(petList.size()));
         PetSearchResult petSearchResult = new PetSearchResult();
         Bundle bundle = new Bundle();
         bundle.putSerializable("petL", petList);
