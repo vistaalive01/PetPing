@@ -58,7 +58,7 @@ public class SearchFragment extends Fragment {
     private int i;
     private List<String> searchResult = new ArrayList<>();
     private ArrayList<String> petSearchAge = new ArrayList<>();
-
+    private ArrayList<String> ageSearch = new ArrayList<>();
 
     private String petID;
     private String petName;
@@ -247,19 +247,27 @@ public class SearchFragment extends Fragment {
 
     private void setValue(Task<QuerySnapshot> task) {
         ArrayList<PetSearch> petList = new ArrayList<>();
+
         for (QueryDocumentSnapshot document : task.getResult()) {
+
             PetSearch petSearch = new PetSearch(document.getId(), document.get("Name").toString(), document.get("Type").toString(),
                     document.get("Color").toString(), document.get("Sex").toString(), document.get("Age").toString(), document.get("Breed").toString());
             petList.add(petSearch);
+
             Log.d("DataTest", String.valueOf(document.getData()));
         }
+
         Log.d("PetList", petList.toString());
 
         PetSearchResult petSearchResult = new PetSearchResult();
         Bundle bundle = new Bundle();
         bundle.putSerializable("petL", petList);
         petSearchResult.setArguments(bundle);
-        getFragmentManager().beginTransaction().replace(getId(), petSearchResult).commit();
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(getId(), petSearchResult);
+        ft.commit();
+
     }
 
 }
