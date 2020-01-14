@@ -1,12 +1,14 @@
 package com.example.petping;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -38,17 +40,22 @@ class PetListViewAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View view = View.inflate(context, R.layout.pet_listview_adapter, null);
-//        ImageView imageView;
-        final TextView textViewName, textViewSex, textViewAge;
-        //  imageView = view.findViewById(R.id.adapter_img);
+        TextView textViewName, textViewSex, textViewAge, textViewBreed;
+        ImageView imgView = (ImageView) view.findViewById(R.id.adapter_img);
+
+        Glide.with(context)
+                .load(petSearchList.get(position).getUrl())
+                .into((ImageView) imgView);
+
         textViewName = view.findViewById(R.id.adapter_name);
         textViewSex = view.findViewById(R.id.adapter_sex);
         textViewAge = view.findViewById(R.id.adapter_age);
+        textViewBreed = view.findViewById(R.id.adapter_breed);
 
         textViewName.setText(petSearchList.get(position).getName());
         textViewSex.setText(petSearchList.get(position).getSex());
         textViewAge.setText(petSearchList.get(position).getAge());
-
+        textViewBreed.setText(petSearchList.get(position).getBreed());
 
         return view;
     }
