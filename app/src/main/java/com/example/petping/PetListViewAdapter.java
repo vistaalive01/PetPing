@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,12 +36,11 @@ class PetListViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View view = View.inflate(context, R.layout.pet_listview_adapter, null);
 //        ImageView imageView;
-        TextView textViewName, textViewSex, textViewAge;
-
-//        imageView = view.findViewById(R.id.adapter_img);
+        final TextView textViewName, textViewSex, textViewAge;
+        //  imageView = view.findViewById(R.id.adapter_img);
         textViewName = view.findViewById(R.id.adapter_name);
         textViewSex = view.findViewById(R.id.adapter_sex);
         textViewAge = view.findViewById(R.id.adapter_age);

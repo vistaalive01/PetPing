@@ -40,7 +40,6 @@ public class SearchFragment extends Fragment {
     private RadioButton rabbitBtn;
     private RadioButton radioButtonType;
 
-    private Spinner spinBreed;
     private Spinner spinColor;
     private RadioButton maleBtn;
     private RadioButton femaleBtn;
@@ -159,7 +158,6 @@ public class SearchFragment extends Fragment {
         if(type == null){
             Toast.makeText(getContext(),"กรุณาเลือกประเภทด้วยค่ะ",Toast.LENGTH_LONG).show();
         }
-
         //Choose every filter
         if (!petSearchAge.isEmpty() && type != null && !color.equals("เลือกสี") && sex != null) {
             db.collection("Pet")
@@ -314,7 +312,8 @@ public class SearchFragment extends Fragment {
 
         for (QueryDocumentSnapshot document : task.getResult()) {
             petSearch = new PetSearch(document.getId(), document.get("Name").toString(), document.get("Type").toString(),
-                    document.get("Color").toString(), document.get("Sex").toString(), document.get("Age").toString(), document.get("Breed").toString());
+                    document.get("Color").toString(), document.get("Sex").toString(), document.get("Age").toString(),
+                    document.get("Breed").toString(), document.get("Size").toString(), document.get("Image").toString());
             petList.add(petSearch);
         }
 

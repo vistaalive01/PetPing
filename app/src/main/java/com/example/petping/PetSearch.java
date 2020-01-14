@@ -8,9 +8,10 @@ public class PetSearch {
     private String sex;
     private String age;
     private String breed;
+    private String size;
+    private String url;
 
-
-    public PetSearch(String ID, String name, String type, String colour, String sex, String age, String breed) {
+    public PetSearch(String ID, String name, String type, String colour, String sex, String age, String breed, String size, String url) {
         this.ID = ID;
         this.name = name;
         this.type = type;
@@ -18,6 +19,24 @@ public class PetSearch {
         this.sex = sex;
         this.age = age;
         this.breed = breed;
+        this.size = size;
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 
     public String getBreed() {
