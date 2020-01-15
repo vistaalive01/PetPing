@@ -1,7 +1,9 @@
 package com.example.petping;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -12,9 +14,13 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import androidx.fragment.app.FragmentTransaction;
+
+
 class PetListViewAdapter extends BaseAdapter {
     private Context context;
     private List<PetSearch> petSearchList;
+    private PetProfileGeneralFragment petProfie;
 
     public PetListViewAdapter(Context context, List<PetSearch> petSearchList) {
         this.context = context;
@@ -34,13 +40,13 @@ class PetListViewAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return 0;
-        //return Long.parseLong(petSearchList.get(position).getID());
+       // return Long.parseLong(petSearchList.get(position).getID());
     }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View view = View.inflate(context, R.layout.pet_listview_adapter, null);
-        TextView textViewName, textViewSex, textViewAge, textViewBreed;
+        TextView textViewName, textViewAge, textViewBreed;
         ImageView imgView = (ImageView) view.findViewById(R.id.adapter_img);
 
         Glide.with(context)
@@ -48,12 +54,19 @@ class PetListViewAdapter extends BaseAdapter {
                 .into((ImageView) imgView);
 
         textViewName = view.findViewById(R.id.adapter_name);
-        textViewSex = view.findViewById(R.id.adapter_sex);
         textViewAge = view.findViewById(R.id.adapter_age);
         textViewBreed = view.findViewById(R.id.adapter_breed);
 
+        String sexMale = "ผู้";
+        ImageView ImageViewSex = view.findViewById(R.id.adapter_sex);
+        if(petSearchList.get(position).getSex().equals(sexMale)){
+            ImageViewSex.setImageResource(R.drawable.sex_male);
+        }
+        else {
+            ImageViewSex.setImageResource(R.drawable.sex_female);
+        }
+
         textViewName.setText(petSearchList.get(position).getName());
-        textViewSex.setText(petSearchList.get(position).getSex());
         textViewAge.setText(petSearchList.get(position).getAge());
         textViewBreed.setText(petSearchList.get(position).getBreed());
 

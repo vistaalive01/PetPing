@@ -3,21 +3,21 @@
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/nav_home"
-        android:title="Home"/>
+        android:title="หน้าแรก"/>
     <item
         android:id="@+id/nav_status"
         android:icon="@drawable/nav_status"
-        android:title="Status"/>
+        android:title="สถานะการอุปการะ"/>
     <item
         android:id="@+id/nav_search"
         android:icon="@drawable/nav_search"
-        android:title="Search"/>
+        android:title="ค้นหาสัตว์"/>
     <item
         android:id="@+id/nav_shelter"
         android:icon="@drawable/nav_shelter"
-        android:title="Search"/>
+        android:title="ค้นหาศูนย์พักพิง"/>
     <item
         android:id="@+id/nav_menu"
         android:icon="@drawable/nav_menu"
-        android:title="Menu"/>
+        android:title="เมนู"/>
 </menu>

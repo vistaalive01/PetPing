@@ -7,6 +7,13 @@
     tools:context=".PetSearchResult">
 
     <Button
+        android:id="@+id/adapter_size_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ทั้งหมด" />
+
+
+    <Button
         android:id="@+id/adapter_sizeS"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,10 +40,7 @@
         android:horizontalSpacing="10dp"
         android:numColumns="auto_fit"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="10dp" >
-
+        android:verticalSpacing="10dp">
     </ListView>
-    …
-    1
 
 </LinearLayout>

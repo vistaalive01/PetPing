@@ -313,7 +313,10 @@ public class SearchFragment extends Fragment {
         for (QueryDocumentSnapshot document : task.getResult()) {
             petSearch = new PetSearch(document.getId(), document.get("Name").toString(), document.get("Type").toString(),
                     document.get("Color").toString(), document.get("Sex").toString(), document.get("Age").toString(),
-                    document.get("Breed").toString(), document.get("Size").toString(), document.get("Image").toString());
+                    document.get("Breed").toString(), document.get("Size").toString(), document.get("Image").toString(),
+                    document.get("Weight").toString(), document.get("Character").toString(), document.get("Marking").toString(),
+                    document.get("Health").toString(), document.get("OriginalLocation").toString(), document.get("Status").toString(),
+                    document.get("Story").toString());
             petList.add(petSearch);
         }
 
