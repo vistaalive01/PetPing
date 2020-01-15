@@ -92,8 +92,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:text="ข้อมูลทั่วไป"
-                android:textSize="18dp"
-                android:textStyle="bold"/>
+                android:textSize="18dp" />
 
             <Button
                 android:id="@+id/button_story"
@@ -111,283 +110,465 @@
                 android:background="@android:color/transparent"
                 android:text="ข้อมูลศูนย์พักพิง" />
         </LinearLayout>
-
-        <ScrollView
+        <ViewFlipper
+            android:id="@+id/view_flipper_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="337dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="50dp">
-
-            <LinearLayout
+            android:layout_height="match_parent">
+            <ScrollView
+                android:id="@+id/scrollView_pet_general"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="337dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="50dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="8dp"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_sex2"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:text="เพศ"
+                            android:textSize="18dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/info_sex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="เพศ"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_colour"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:text="สี"
+                            android:textSize="18dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/info_colour"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="สี"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_marking"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:text="จุดเด่น"
+                            android:textSize="18dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/info_marking"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="จุดเด่น"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_character"
+                            android:layout_width="160dp"
+                            android:layout_height="match_parent"
+                            android:text="ลักษณะเฉพาะตัว"
+                            android:textSize="18dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/info_character"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="ลักษณะเฉพาะตัว"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_weight"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:text="น้ำหนัก"
+                            android:textSize="18dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/info_weight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="น้ำหนัก"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_size"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:text="ขนาด"
+                            android:textSize="18dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/info_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="ขนาด"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_location"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:text="สถานที่พบ"
+                            android:textSize="18dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/info_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="สถานที่พบ"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_microchip"
+                            android:layout_width="160dp"
+                            android:layout_height="match_parent"
+                            android:text="หมายเลขไมโครชิป"
+                            android:textSize="18dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/info_microchip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="หมายเลขไมโครชิป"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_status"
+                            android:layout_width="160dp"
+                            android:layout_height="match_parent"
+                            android:text="สถานภาพของน้อง"
+                            android:textSize="18dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/info_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="สถานภาพของน้อง"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/scrollView_pet_story"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="337dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="50dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/text_story"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="บลาๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ"
+                        android:textSize="18dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"/>
+
+                </LinearLayout>
+            </ScrollView>
+            <ScrollView
+                android:id="@+id/scrollView_pet_shelter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="337dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="50dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
 
                     <TextView
                         android:id="@+id/text_sex"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
-                        android:text="เพศ"
-                        android:textSize="18dp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:id="@+id/info_sex"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="เพศ"
-                        android:textSize="18dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/text_colour"
-                        android:layout_width="100dp"
                         android:layout_height="match_parent"
-                        android:text="สี"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Thailand Adopter Club"
                         android:textSize="18dp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/info_colour"
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="สี"
-                        android:textSize="18dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/text_marking"
-                        android:layout_width="100dp"
                         android:layout_height="match_parent"
-                        android:text="จุดเด่น"
-                        android:textSize="18dp"
-                        android:textStyle="bold"/>
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/info_marking"
+                        <ImageView
+                            android:id="@+id/icon_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/nav_shelter" />
+
+                        <TextView
+                            android:id="@+id/shelter_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:text="ที่อยู่"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="จุดเด่น"
-                        android:textSize="18dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/text_character"
-                        android:layout_width="160dp"
                         android:layout_height="match_parent"
-                        android:text="ลักษณะเฉพาะตัว"
-                        android:textSize="18dp"
-                        android:textStyle="bold"/>
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/info_character"
+                        <ImageView
+                            android:id="@+id/icon_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/nav_shelter" />
+
+                        <TextView
+                            android:id="@+id/shelter_email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:text="อีเมล"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="ลักษณะเฉพาะตัว"
-                        android:textSize="18dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/text_weight"
-                        android:layout_width="100dp"
                         android:layout_height="match_parent"
-                        android:text="น้ำหนัก"
-                        android:textSize="18dp"
-                        android:textStyle="bold"/>
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/info_weight"
+                        <ImageView
+                            android:id="@+id/icon_fb"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/nav_shelter" />
+
+                        <TextView
+                            android:id="@+id/shelter_fb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:text="ทเฟซบุ๊ก"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="น้ำหนัก"
-                        android:textSize="18dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/text_height"
-                        android:layout_width="100dp"
                         android:layout_height="match_parent"
-                        android:text="ส่วนสูง"
-                        android:textSize="18dp"
-                        android:textStyle="bold"/>
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/info_height"
+                        <ImageView
+                            android:id="@+id/icon_ig"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/nav_shelter" />
+
+                        <TextView
+                            android:id="@+id/shelter_ig"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:text="อินสตาแรกม"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="ส่วนสูง"
-                        android:textSize="18dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/text_size"
-                        android:layout_width="100dp"
                         android:layout_height="match_parent"
-                        android:text="ขนาด"
-                        android:textSize="18dp"
-                        android:textStyle="bold"/>
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/info_size"
+                        <ImageView
+                            android:id="@+id/icon_line"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/nav_shelter" />
+
+                        <TextView
+                            android:id="@+id/shelter_line"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:text="ไลน์"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="ขนาด"
-                        android:textSize="18dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/text_location"
-                        android:layout_width="100dp"
                         android:layout_height="match_parent"
-                        android:text="สถานที่พบ"
-                        android:textSize="18dp"
-                        android:textStyle="bold"/>
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/info_location"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="สถานที่พบ"
-                        android:textSize="18dp" />
+                        <ImageView
+                            android:id="@+id/icon_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/nav_shelter" />
+
+                        <TextView
+                            android:id="@+id/shelter_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:text="เบอร์โทรศัพท์"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+
                 </LinearLayout>
+            </ScrollView>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="8dp"
-                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/text_microchip"
-                        android:layout_width="160dp"
-                        android:layout_height="match_parent"
-                        android:text="หมายเลขไมโครชิป"
-                        android:textSize="18dp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:id="@+id/info_microchip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="หมายเลขไมโครชิป"
-                        android:textSize="18dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/text_status"
-                        android:layout_width="160dp"
-                        android:layout_height="match_parent"
-                        android:text="สถานภาพของน้อง"
-                        android:textSize="18dp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:id="@+id/info_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:text="สถานภาพของน้อง"
-                        android:textSize="18dp" />
-                </LinearLayout>
-
-            </LinearLayout>
-        </ScrollView>
+        </ViewFlipper>
 
         <Button
             android:id="@+id/adoption"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="650dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="650dp"
+            android:layout_marginEnd="10dp"
             android:text="สนใจรับเลี้ยง" />
 
     </RelativeLayout>
