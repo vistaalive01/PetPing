@@ -8,24 +8,26 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import androidx.fragment.app.DialogFragment;
 
 
 public class DialogFiltering extends DialogFragment {
-    private EditText editTextUsername;
-    private EditText editTextPassword;
     private CheckBox ageLeastOne;
     private CheckBox ageOnetoFive;
     private CheckBox ageFivetoTen;
     private CheckBox ageTenUp;
-    public OnInputSelected mOnInputSelected;
-    private TextView mActionOk, mActionCancel, mInputDisplay;
-    private static final String TAG = "MyCustomDialog";
+    private Spinner spinColor;
+    public  filterSelected mOnInputSelected;
     private EditText mInput;
+    private ArrayList<String> petSearchAge = new ArrayList<>();
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -33,10 +35,17 @@ public class DialogFiltering extends DialogFragment {
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.layout_dialog_filtering, null);
-//        editTextUsername = view.findViewById(R.id.edit_username);
-//        editTextPassword = view.findViewById(R.id.edit_password);
 
         mInput = view.findViewById(R.id.input);
+        ageLeastOne = view.findViewById(R.id.cb_age_least1y);
+        ageOnetoFive = view.findViewById(R.id.cb_age_1to5y);
+        ageFivetoTen = view.findViewById(R.id.cb_age_5to10y);
+        ageTenUp = view.findViewById(R.id.cb_age_10_up);
+
+        spinColor = view.findViewById(R.id.color_spinner);
+        ArrayAdapter<CharSequence> colorAdapter = ArrayAdapter.createFromResource(getContext(), R.array.color_array, android.R.layout.simple_spinner_item);
+        colorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinColor.setAdapter(colorAdapter);
 
         builder.setView(view)
                 .setTitle("Title")
@@ -49,15 +58,31 @@ public class DialogFiltering extends DialogFragment {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        if(ageLeastOne.isChecked()){
+                            petSearchAge.add("0 ปี");
+                        }
+                        if(ageOnetoFive.isChecked()){
+                            petSearchAge.add("1 ปี");
+                            petSearchAge.add("2 ปี");
+                            petSearchAge.add("3 ปี");
+                            petSearchAge.add("4 ปี");
+                            petSearchAge.add("5 ปี");
+                        }
+                        if(ageFivetoTen.isChecked()){
+                            petSearchAge.add("6 ปี");
+                            petSearchAge.add("7 ปี");
+                            petSearchAge.add("8 ปี");
+                            petSearchAge.add("9 ปี");
+                            petSearchAge.add("10 ปี");
+                        }
+                        if(ageTenUp.isChecked()){
+                            petSearchAge.add("10 ปี");
+                        }
                         String input = mInput.getText().toString();
-                        mOnInputSelected.sendInput(input);
+                        String color = spinColor.getSelectedItem().toString();
+                        mOnInputSelected.sendFiltering(input, color, petSearchAge);
                     }
                 });
-
-////        ageLeastOne = view.findViewById(R.id.cb_age_least1y);
-////        ageOnetoFive = view.findViewById(R.id.cb_age_1to5y);
-////        ageFivetoTen = view.findViewById(R.id.cb_age_5to10y);
-////        ageTenUp = view.findViewById(R.id.cb_age_10_up);
         return builder.create();
     }
 
@@ -65,14 +90,14 @@ public class DialogFiltering extends DialogFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            mOnInputSelected = (OnInputSelected) getTargetFragment();
+            mOnInputSelected = (filterSelected) getTargetFragment();
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() +
                     "must implement ExampleDialogListener");
         }
     }
 
-    public interface OnInputSelected{
-        void sendInput(String input);
+    public interface filterSelected{
+        void sendFiltering(String input, String color, ArrayList<String> petSearchAge);
     }
 }

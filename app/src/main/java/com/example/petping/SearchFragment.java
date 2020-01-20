@@ -48,9 +48,7 @@ public class SearchFragment extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private String type;
-//    private String color;
     private String sex;
-//    private ArrayList<String> petSearchAge = new ArrayList<>();
     private ArrayList<String> petSearchSize = new ArrayList<>();
     private PetSearch petSearch;
     private ArrayList<PetSearch> petList = new ArrayList<>();
@@ -132,7 +130,6 @@ public class SearchFragment extends Fragment {
 
 
     private void searchPetResult(){
-
         if(type == null){
             Toast.makeText(getContext(),"กรุณาเลือกประเภทด้วยค่ะ",Toast.LENGTH_LONG).show();
         }
