@@ -20,8 +20,8 @@ import java.util.ArrayList;
 
 public class PetProfileGeneralFragment extends Fragment {
     private ArrayList<PetSearch> petProfileList;
-    private ImageView imageView;
-    private TextView infoName, infoAge, infoSex, infoBreed;
+    private ImageView imageView, imageSex;
+    private TextView infoName, infoAge, infoBreed;
     private TextView infoColor, infoSize, infoMarking, infoChar;
     private TextView infoWeight, infoFoundLoc, infoStatus;
     private ViewFlipper viewFlipper;
@@ -69,7 +69,6 @@ public class PetProfileGeneralFragment extends Fragment {
         imageView = view.findViewById(R.id.img_pet_profile);
         infoName = view.findViewById(R.id.info_name);
         infoAge = view.findViewById(R.id.info_age);
-        infoSex = view.findViewById(R.id.info_sex);
         infoBreed = view.findViewById(R.id.info_breed);
         infoColor = view.findViewById(R.id.info_colour);
         infoSize = view.findViewById(R.id.info_size);
@@ -78,6 +77,8 @@ public class PetProfileGeneralFragment extends Fragment {
         infoWeight = view.findViewById(R.id.info_weight);
         infoFoundLoc = view.findViewById(R.id.info_location);
         infoStatus = view.findViewById(R.id.info_status);
+        imageSex = view.findViewById(R.id.img_info_sex);
+
 
         for(int i=0; i<petProfileList.size(); i++){
             Glide.with(getContext())
@@ -85,7 +86,6 @@ public class PetProfileGeneralFragment extends Fragment {
                     .into(imageView);
             infoName.setText(petProfileList.get(i).getName());
             infoAge.setText(petProfileList.get(i).getAge());
-            infoSex.setText(petProfileList.get(i).getSex());
             infoBreed.setText(petProfileList.get(i).getBreed());
             infoColor.setText(petProfileList.get(i).getColour());
             infoSize.setText(petProfileList.get(i).getSize());
@@ -94,6 +94,12 @@ public class PetProfileGeneralFragment extends Fragment {
             infoWeight.setText(petProfileList.get(i).getWeight());
             infoFoundLoc.setText(petProfileList.get(i).getFoundLoc());
             infoStatus.setText(petProfileList.get(i).getStatus());
+            if(petProfileList.get(i).getSex().equals("ผู้")){
+                imageSex.setImageResource(R.drawable.sex_male);
+            }
+            else {
+                imageSex.setImageResource(R.drawable.sex_female);
+            }
         }
 
         return view;

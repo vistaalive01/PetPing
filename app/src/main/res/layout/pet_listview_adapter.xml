@@ -19,32 +19,34 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:scaleType="centerCrop"
-       />
+        />
 
-    // Pet's Name
-    <TextView
-        android:id="@+id/adapter_name"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="126dp"
-        android:layout_marginEnd="237dp"
-        android:textSize="30dp" />
+        android:orientation="horizontal">
 
-    //Pet's Gender
-    <ImageView
-        android:id="@+id/adapter_sex"
-        android:layout_width="20dp"
-        android:layout_height="30dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="158dp"
-        android:layout_marginTop="134dp" />
+        // Pet's Name
+        <TextView
+            android:id="@+id/adapter_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="126dp"
+            android:text="Test"
+            android:textSize="30dp" />
+
+        //Pet's Gender
+        <ImageView
+            android:id="@+id/adapter_sex"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="134dp" />
+    </LinearLayout>
 
     //Pet's age
+
     <TextView
         android:id="@+id/adapter_age"
         android:layout_width="wrap_content"
@@ -68,15 +70,15 @@
 
     <!--//Like button-->
     <!--<ImageButton-->
-        <!--android:id="@+id/imageButton"-->
-        <!--android:layout_width="40dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_marginStart="347dp"-->
-        <!--android:layout_marginTop="16dp"-->
-        <!--android:background="@android:color/transparent"-->
-        <!--app:srcCompat="@drawable/heart_w"-->
-        <!--/>-->
+    <!--android:id="@+id/imageButton"-->
+    <!--android:layout_width="40dp"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--android:layout_marginStart="347dp"-->
+    <!--android:layout_marginTop="16dp"-->
+    <!--android:background="@android:color/transparent"-->
+    <!--app:srcCompat="@drawable/heart_w"-->
+    <!--/>-->
 
 </RelativeLayout>

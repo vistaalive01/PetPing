@@ -9,7 +9,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:layout_marginRight="32px"
         android:layout_marginLeft="32px"
         android:layout_marginTop="24px"
@@ -26,44 +25,56 @@
             android:scaleType="centerCrop"/>
 
 
-        <TextView
-            android:id="@+id/info_name"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="207dp"
-            android:layout_marginEnd="238dp"
-            android:textSize="30dp" />
+            android:layout_marginRight="32px"
+            android:layout_marginLeft="32px"
+            android:layout_marginTop="15px"
+            android:layout_marginBottom="24px"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/info_age"
+            <TextView
+                android:id="@+id/info_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="215dp"
+                android:textSize="30dp" />
+
+            <ImageView
+                android:id="@+id/img_info_sex"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="225dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="250dp" />
+            android:layout_marginRight="32px"
+            android:layout_marginLeft="32px"
+            android:layout_marginTop="24px"
+            android:layout_marginBottom="24px"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/info_breed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="75dp"
-            android:layout_marginTop="250dp" />
+            <TextView
+                android:id="@+id/info_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="250dp" />
 
-        <ImageView
-            android:id="@+id/img_info_sex"
-            android:layout_width="20dp"
-            android:layout_height="30dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="158dp"
-            android:layout_marginTop="214dp" />
+            <TextView
+                android:id="@+id/info_breed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="250dp" />
+
+        </LinearLayout>
 
         <ImageButton
             android:id="@+id/imageButton"
@@ -71,7 +82,7 @@
             android:layout_height="40dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="334dp"
+            android:layout_marginStart="330dp"
             android:layout_marginTop="219dp"
             android:background="@android:color/transparent"
             app:srcCompat="@drawable/heart_w" />
@@ -82,8 +93,7 @@
             android:orientation="horizontal"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="280dp"
-            >
+            android:layout_marginTop="280dp">
 
             <Button
                 android:id="@+id/button_general"
@@ -91,8 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:text="ข้อมูลทั่วไป"
-                android:textSize="18dp" />
+                android:text="ข้อมูลทั่วไป" />
 
             <Button
                 android:id="@+id/button_story"
@@ -113,7 +122,7 @@
         <ViewFlipper
             android:id="@+id/view_flipper_info"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
             <ScrollView
                 android:id="@+id/scrollView_pet_general"
                 android:layout_width="match_parent"
@@ -139,36 +148,10 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/text_sex2"
-                            android:layout_width="100dp"
-                            android:layout_height="match_parent"
-                            android:text="เพศ"
-                            android:textSize="18dp"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:id="@+id/info_sex"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:text="เพศ"
-                            android:textSize="18dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="8dp"
-                        android:orientation="horizontal">
-
-                        <TextView
                             android:id="@+id/text_colour"
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:text="สี"
-                            android:textSize="18dp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -176,8 +159,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
-                            android:text="สี"
-                            android:textSize="18dp" />
+                            android:text="สี" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -193,7 +175,6 @@
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:text="จุดเด่น"
-                            android:textSize="18dp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -201,8 +182,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
-                            android:text="จุดเด่น"
-                            android:textSize="18dp" />
+                            android:text="จุดเด่น" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -215,10 +195,9 @@
 
                         <TextView
                             android:id="@+id/text_character"
-                            android:layout_width="160dp"
+                            android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:text="ลักษณะเฉพาะตัว"
-                            android:textSize="18dp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -226,8 +205,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
-                            android:text="ลักษณะเฉพาะตัว"
-                            android:textSize="18dp" />
+                            android:text="ลักษณะเฉพาะตัว" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -243,7 +221,6 @@
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:text="น้ำหนัก"
-                            android:textSize="18dp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -251,8 +228,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
-                            android:text="น้ำหนัก"
-                            android:textSize="18dp" />
+                            android:text="น้ำหนัก" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -268,7 +244,6 @@
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:text="ขนาด"
-                            android:textSize="18dp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -276,8 +251,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
-                            android:text="ขนาด"
-                            android:textSize="18dp" />
+                            android:text="ขนาด" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -293,7 +267,6 @@
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:text="สถานที่พบ"
-                            android:textSize="18dp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -301,8 +274,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
-                            android:text="สถานที่พบ"
-                            android:textSize="18dp" />
+                            android:text="สถานที่พบ" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -315,10 +287,9 @@
 
                         <TextView
                             android:id="@+id/text_microchip"
-                            android:layout_width="160dp"
+                            android:layout_width="120dp"
                             android:layout_height="match_parent"
                             android:text="หมายเลขไมโครชิป"
-                            android:textSize="18dp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -326,8 +297,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
-                            android:text="หมายเลขไมโครชิป"
-                            android:textSize="18dp" />
+                            android:text="หมายเลขไมโครชิป" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -340,10 +310,9 @@
 
                         <TextView
                             android:id="@+id/text_status"
-                            android:layout_width="160dp"
+                            android:layout_width="120dp"
                             android:layout_height="match_parent"
                             android:text="สถานภาพของน้อง"
-                            android:textSize="18dp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -351,8 +320,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
-                            android:text="สถานภาพของน้อง"
-                            android:textSize="18dp" />
+                            android:text="สถานภาพของน้อง" />
                     </LinearLayout>
                 </LinearLayout>
             </ScrollView>
@@ -378,7 +346,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="บลาๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ"
-                        android:textSize="18dp"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"/>
 
@@ -408,7 +375,6 @@
                         android:layout_marginEnd="20dp"
                         android:layout_marginBottom="8dp"
                         android:text="Thailand Adopter Club"
-                        android:textSize="18dp"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -431,8 +397,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
-                            android:text="ที่อยู่"
-                            android:textSize="18dp" />
+                            android:text="ที่อยู่" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -455,8 +420,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
-                            android:text="อีเมล"
-                            android:textSize="18dp" />
+                            android:text="อีเมล" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -479,8 +443,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
-                            android:text="ทเฟซบุ๊ก"
-                            android:textSize="18dp" />
+                            android:text="เฟซบุ๊ก" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -503,8 +466,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
-                            android:text="อินสตาแรกม"
-                            android:textSize="18dp" />
+                            android:text="อินสตาแกรม" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -527,8 +489,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
-                            android:text="ไลน์"
-                            android:textSize="18dp" />
+                            android:text="ไลน์" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -551,8 +512,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
-                            android:text="เบอร์โทรศัพท์"
-                            android:textSize="18dp" />
+                            android:text="เบอร์โทรศัพท์" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -561,16 +521,15 @@
 
         </ViewFlipper>
 
-        <Button
-            android:id="@+id/adoption"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="650dp"
-            android:layout_marginEnd="10dp"
-            android:text="สนใจรับเลี้ยง" />
-
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/adoption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="250dp"
+        android:layout_marginBottom="5dp"
+        android:text="สนใจรับเลี้ยง" />
 
 </FrameLayout>

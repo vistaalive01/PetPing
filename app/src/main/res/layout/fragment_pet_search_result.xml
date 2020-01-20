@@ -1,46 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginRight="32px"
+    android:layout_marginLeft="32px"
+    android:layout_marginTop="24px"
+    android:layout_marginBottom="24px"
     tools:context=".PetSearchResult">
 
-    <Button
-        android:id="@+id/adapter_size_total"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ทั้งหมด" />
-
-
-    <Button
-        android:id="@+id/adapter_sizeS"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="S" />
-
-    <Button
-        android:id="@+id/adapter_sizeM"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="M" />
-
-    <Button
-        android:id="@+id/adapter_sizeL"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="L" />
-
-    <ListView
-        android:id="@+id/listView_pet"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnWidth="90dp"
-        android:gravity="center"
-        android:horizontalSpacing="10dp"
-        android:numColumns="auto_fit"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="10dp">
-    </ListView>
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/textview_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_horizontal"
+            android:text="here will be our username"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textview_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textview_username"
+            android:layout_alignParentStart="true"
+            android:gravity="center_horizontal"
+            android:text="here will be our password"
+            android:textSize="30sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/input_display"
+            android:layout_below="@+id/open_dialog"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="15sp"
+            android:textColor="#000"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30px"
+            android:layout_marginBottom="30px"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true">
+
+            <Button
+                android:id="@+id/adapter_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Filter" />
+
+            <Button
+                android:id="@+id/adapter_size_total"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="ทั้งหมด" />
+
+            <Button
+                android:id="@+id/adapter_sizeS"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="S" />
+
+            <Button
+                android:id="@+id/adapter_sizeM"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="M" />
+
+            <Button
+                android:id="@+id/adapter_sizeL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="L" />
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/listView_pet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnWidth="90dp"
+            android:gravity="center"
+            android:horizontalSpacing="10dp"
+            android:numColumns="auto_fit"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="10dp"></ListView>
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -11,28 +11,34 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class PetSearchResult extends Fragment {
+public class PetSearchResult extends Fragment implements DialogFiltering.OnInputSelected{
     private ArrayList<PetSearch> petSearchList ;
     private ArrayList<PetSearch> petSearchListS;
     private ArrayList<PetSearch> petSearchListM;
     private ArrayList<PetSearch> petSearchListL;
+    private ArrayList<PetSearch> petFilterList;
     private ListView listView;
     private PetListViewAdapter petAdapter;
     private Button btnS, btnM, btnL, btnTotal;
     private ArrayList<PetSearch> petItem;
+    private Button btnFiltering;
 
-
+    private TextView textViewUsername;
+    private TextView textViewPassword;
+    public TextView mInputDisplay;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View temp = inflater.inflate(R.layout.fragment_pet_search_result, null);
-
+        mInputDisplay = temp.findViewById(R.id.input_display);
         if(getArguments() != null){
             petSearchList = (ArrayList<PetSearch>)getArguments().getSerializable("petL");
         }
@@ -55,6 +61,20 @@ public class PetSearchResult extends Fragment {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(getId(), petProfile);
                 ft.commit();
+            }
+        });
+
+        textViewUsername = (TextView) temp.findViewById(R.id.textview_username);
+        textViewPassword = (TextView) temp.findViewById(R.id.textview_password);
+
+        btnFiltering = temp.findViewById(R.id.adapter_filter);
+        btnFiltering.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                petFilterList = new ArrayList<>();
+                DialogFiltering dialog = new DialogFiltering();
+                dialog.setTargetFragment(PetSearchResult.this, 1);
+                dialog.show(getFragmentManager(), "MyCustomDialog");
             }
         });
 
@@ -183,5 +203,15 @@ public class PetSearchResult extends Fragment {
             }
         });
         return temp;
+    }
+
+    private void  openDialog() {
+        DialogFiltering dialogFiltering = new DialogFiltering();
+        dialogFiltering.show(getFragmentManager(),"Example Dialog");
+    }
+
+    @Override
+    public void sendInput(String input) {
+        mInputDisplay.setText(input);
     }
 }
