@@ -24,10 +24,15 @@ public class DialogFiltering extends DialogFragment {
     private CheckBox ageOnetoFive;
     private CheckBox ageFivetoTen;
     private CheckBox ageTenUp;
+    private CheckBox sizeS;
+    private CheckBox sizeM;
+    private CheckBox sizeL;
     private Spinner spinColor;
     public  filterSelected mOnInputSelected;
-    private EditText mInput;
     private ArrayList<String> petSearchAge = new ArrayList<>();
+    private ArrayList<String> petSearchSize = new ArrayList<>();
+    private String type;
+    private TextView textS, textM, textL;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -35,18 +40,44 @@ public class DialogFiltering extends DialogFragment {
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.layout_dialog_filtering, null);
-
-        mInput = view.findViewById(R.id.input);
+        if(getArguments() != null){
+            type = (String) getArguments().getString("type");
+        }
+        //Age
         ageLeastOne = view.findViewById(R.id.cb_age_least1y);
         ageOnetoFive = view.findViewById(R.id.cb_age_1to5y);
         ageFivetoTen = view.findViewById(R.id.cb_age_5to10y);
         ageTenUp = view.findViewById(R.id.cb_age_10_up);
 
+        //Color
         spinColor = view.findViewById(R.id.color_spinner);
         ArrayAdapter<CharSequence> colorAdapter = ArrayAdapter.createFromResource(getContext(), R.array.color_array, android.R.layout.simple_spinner_item);
         colorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinColor.setAdapter(colorAdapter);
 
+        //Size
+        textS = view.findViewById(R.id.text_size_s);
+        textM = view.findViewById(R.id.text_size_m);
+        textL = view.findViewById(R.id.text_size_l);
+        sizeS = view.findViewById(R.id.cb_size_s);
+        sizeM = view.findViewById(R.id.cb_size_m);
+        sizeL = view.findViewById(R.id.cb_size_l);
+        if(type.equals("สุนัข")){
+            textS.setText("1-5 กิโลกรัม");
+            textM.setText("5-10 กิโลกรัม");
+            textL.setText("10 กิโลกรัมชึ้นไป");
+            textS.setVisibility(View.VISIBLE);
+            textM.setVisibility(View.VISIBLE);
+            textL.setVisibility(View.VISIBLE);
+        }
+        if(type.equals("แมว")){
+            textS.setText("1-5 กิโลกรัม");
+            textM.setText("5-8 กิโลกรัม");
+            textL.setText("8 กิโลกรัมชึ้นไป");
+            textS.setVisibility(View.VISIBLE);
+            textM.setVisibility(View.VISIBLE);
+            textL.setVisibility(View.VISIBLE);
+        }
         builder.setView(view)
                 .setTitle("Title")
                 .setNegativeButton("cancle", new DialogInterface.OnClickListener() {
@@ -78,9 +109,21 @@ public class DialogFiltering extends DialogFragment {
                         if(ageTenUp.isChecked()){
                             petSearchAge.add("10 ปี");
                         }
-                        String input = mInput.getText().toString();
+                        if(sizeS.isChecked()){
+                            petSearchSize.add("S");
+                            petSearchSize.add("s");
+                        }
+                        if(sizeM.isChecked()){
+                            petSearchSize.add("M");
+                            petSearchSize.add("m");
+                        }
+                        if(sizeL.isChecked()){
+                            petSearchSize.add("L");
+                            petSearchSize.add("l");
+                        }
+
                         String color = spinColor.getSelectedItem().toString();
-                        mOnInputSelected.sendFiltering(input, color, petSearchAge);
+                        mOnInputSelected.sendFiltering(color, petSearchAge, petSearchSize);
                     }
                 });
         return builder.create();
@@ -98,6 +141,6 @@ public class DialogFiltering extends DialogFragment {
     }
 
     public interface filterSelected{
-        void sendFiltering(String input, String color, ArrayList<String> petSearchAge);
+        void sendFiltering(String color, ArrayList<String> petSearchAge, ArrayList<String> petSearchSize);
     }
 }
