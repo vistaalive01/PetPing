@@ -312,6 +312,28 @@ public class PetSearchResult extends Fragment implements DialogFiltering.filterS
             petAdapter = new PetListViewAdapter(getContext(), petSearchFilter);
             listView.setAdapter(petAdapter);
         }
+        //Not Choose Color & Age
+        if(color == null && petSearchAge.isEmpty() && !petSearchSize.isEmpty()) {
+            int count = 0;
+            for (int i = 0; i < petSearchList.size(); i++) {
+                for (int k=0; k<petSearchSize.size(); k++){
+                    if (petSearchList.get(i).getSize().equals(petSearchAge.get(k))) {
+                        PetSearch petFilter = new PetSearch(petSearchList.get(i).getID(), petSearchList.get(i).getName(),
+                                petSearchList.get(i).getType(), petSearchList.get(i).getColour(), petSearchList.get(i).getSex(),
+                                petSearchList.get(i).getAge(), petSearchList.get(i).getBreed(), petSearchList.get(i).getSize(), petSearchList.get(i).getUrl(),
+                                petSearchList.get(i).getWeight(), petSearchList.get(i).getCharacter(), petSearchList.get(i).getMarking(),
+                                petSearchList.get(i).getHealth(), petSearchList.get(i).getFoundLoc(), petSearchList.get(i).getStatus(),
+                                petSearchList.get(i).getStory());
+                        petSearchFilter.add(petFilter);
+                        count++;
+                    }
+                }
+            }
+
+            resultFound.setText(String.valueOf(count));
+            petAdapter = new PetListViewAdapter(getContext(), petSearchFilter);
+            listView.setAdapter(petAdapter);
+        }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -329,5 +351,6 @@ public class PetSearchResult extends Fragment implements DialogFiltering.filterS
             }
         });
     }
+
 
 }

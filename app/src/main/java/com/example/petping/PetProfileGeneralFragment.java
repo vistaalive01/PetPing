@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ public class PetProfileGeneralFragment extends Fragment {
     private TextView infoWeight, infoFoundLoc, infoStatus;
     private ViewFlipper viewFlipper;
     private Button btnGeneral, btnStory, btnShelter;
+    private Button btnAdopt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +42,7 @@ public class PetProfileGeneralFragment extends Fragment {
         btnGeneral = view.findViewById(R.id.button_general);
         btnStory = view.findViewById(R.id.button_story);
         btnShelter = view.findViewById(R.id.button_shelter);
+        btnAdopt = view.findViewById(R.id.btn_adopt);
 
         btnGeneral.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +67,6 @@ public class PetProfileGeneralFragment extends Fragment {
                 viewFlipper.setDisplayedChild(viewFlipper.indexOfChild(view.findViewById(R.id.scrollView_pet_shelter)));
             }
         });
-
 
         imageView = view.findViewById(R.id.img_pet_profile);
         infoName = view.findViewById(R.id.info_name);
@@ -101,6 +103,15 @@ public class PetProfileGeneralFragment extends Fragment {
                 imageSex.setImageResource(R.drawable.sex_female);
             }
         }
+
+        btnAdopt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(getId(), new AdoptionProcessFragment());
+                ft.commit();
+            }
+        });
 
         return view;
     }

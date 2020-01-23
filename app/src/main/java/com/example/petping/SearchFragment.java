@@ -62,6 +62,7 @@ public class SearchFragment extends Fragment {
         btnDog = view.findViewById(R.id.btn_dog);
         btnCat = view.findViewById(R.id.btn_cat);
 
+        //Show Pet that match with each user instead of random
         btnDog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
