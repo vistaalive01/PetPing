@@ -108,7 +108,7 @@ public class PetProfileGeneralFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(getId(), new AdoptionProcessFragment());
+                ft.replace(getId(), new AdoptionRegulationFragment());
                 ft.commit();
             }
         });
