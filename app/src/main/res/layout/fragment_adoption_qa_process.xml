@@ -28,8 +28,9 @@
                     android:layout_height="wrap_content" />
                 <ImageButton
                     android:id="@+id/qa_one_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sex_female"
                     />
             </LinearLayout>
             <LinearLayout
@@ -37,6 +38,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/qa_two_btnB"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sex_male"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -45,10 +51,212 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageButton
-                    android:id="@+id/qa_two_btn"
+                    android:id="@+id/qa_two_btnA"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sex_female" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/qa_three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/qa_three_btnB"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sex_male"/>
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                   />
+                    android:text="ข้อ3"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageButton
+                    android:id="@+id/qa_three_btnA"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sex_female" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/qa_four"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/qa_four_btnB"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sex_male"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ข้อ4"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageButton
+                    android:id="@+id/qa_four_btnA"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sex_female" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/qa_five"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/qa_five_btnB"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sex_male"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ข้อ5"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageButton
+                    android:id="@+id/qa_five_btnA"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sex_female" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/qa_six"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/qa_six_btnB"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sex_male"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ข้อ6"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageButton
+                    android:id="@+id/qa_six_btnA"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sex_female" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/qa_seven"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/qa_seven_btnB"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sex_male"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ข้อ7"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageButton
+                    android:id="@+id/qa_seven_btnA"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sex_female" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/qa_eight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/qa_eight_btnB"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sex_male"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ข้อ8"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageButton
+                    android:id="@+id/qa_eight_btnA"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sex_female" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/qa_nine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/qa_nine_btnB"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sex_male"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ข้อ9"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageButton
+                    android:id="@+id/qa_nine_btnA"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sex_female" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/qa_ten"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/qa_ten_btnB"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sex_male"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ข้อ10"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageButton
+                    android:id="@+id/qa_ten_btnA"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sex_female" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/qa_eleven"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/qa_eleven_btn"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/sex_male"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ข้อ11"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
         </ViewFlipper>
     </LinearLayout>
