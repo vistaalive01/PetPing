@@ -121,6 +121,16 @@
                 android:gravity="right"
                 android:text="บาท" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+           <Button
+               android:id="@+id/edit_info_btn"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="ต่อไป"/>
+        </LinearLayout>
 
     </LinearLayout>
 </RelativeLayout>

@@ -31,8 +31,6 @@ public class SearchFragment extends Fragment {
     private ImageButton btnDog;
     private ImageButton btnCat;
 
-
-
     private RadioGroup radioGroupType;
     private RadioButton dogBtn;
     private RadioButton catBtn;

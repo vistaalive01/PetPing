@@ -1,0 +1,74 @@
+package com.example.petping;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
+public class LoginActivity extends AppCompatActivity {
+    private EditText emailL, passL;
+    private Button btn;
+    private FirebaseAuth Auth;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        emailL = findViewById(R.id.log_email);
+        passL = findViewById(R.id.log_pass);
+        btn = findViewById(R.id.log_btn);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //keep string that input in EditText to keep in string
+                String email = emailL.getText().toString();
+                String password = passL.getText().toString();
+
+                if(email.isEmpty() ){
+                    showMessage("Please input email");
+                }
+                else if(password.isEmpty()) {
+                    showMessage("Please input password");
+                }
+                else{
+                    logIn(email,password);
+                }
+            }
+        });
+    }
+
+    private void logIn(String email, String password) {
+        Auth = FirebaseAuth.getInstance();
+        //log in with email and password that have already register to Firebase Authentication
+        Auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Intent Menu = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(Menu);
+                            finish();
+                        }
+                        else{
+                            showMessage("Log In failed");
+                        }
+                    }
+                });
+    }
+    private void showMessage(String show){
+        //show message on application
+        Toast.makeText(getApplicationContext(),show,Toast.LENGTH_LONG).show();
+    }
+
+}
