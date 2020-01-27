@@ -28,6 +28,7 @@ public class PetProfileGeneralFragment extends Fragment {
     private ViewFlipper viewFlipper;
     private Button btnGeneral, btnStory, btnShelter;
     private Button btnAdopt;
+    private ArrayList<PetSearch> petItem;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,7 +82,7 @@ public class PetProfileGeneralFragment extends Fragment {
         infoStatus = view.findViewById(R.id.info_status);
         imageSex = view.findViewById(R.id.img_info_sex);
 
-
+        petItem = new ArrayList<>();
         for(int i=0; i<petProfileList.size(); i++){
             Glide.with(getContext())
                     .load(petProfileList.get(i).getUrl())
@@ -102,14 +103,31 @@ public class PetProfileGeneralFragment extends Fragment {
             else {
                 imageSex.setImageResource(R.drawable.sex_female);
             }
+            PetSearch petProfile = new PetSearch(petProfileList.get(i).getID(), petProfileList.get(i).getName(),
+                    petProfileList.get(i).getType(), petProfileList.get(i).getColour(), petProfileList.get(i).getSex(),
+                    petProfileList.get(i).getAge(), petProfileList.get(i).getBreed(), petProfileList.get(i).getSize(), petProfileList.get(i).getUrl(),
+                    petProfileList.get(i).getWeight(), petProfileList.get(i).getCharacter(), petProfileList.get(i).getMarking(),
+                    petProfileList.get(i).getHealth(), petProfileList.get(i).getFoundLoc(), petProfileList.get(i).getStatus(),
+                    petProfileList.get(i).getStory());
+            petItem.add(petProfile);
         }
 
         btnAdopt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AdoptionRegulationFragment adoptionRegulation = new AdoptionRegulationFragment();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("petProfile", petItem);
+
+                adoptionRegulation.setArguments(bundle);
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(getId(), new AdoptionRegulationFragment());
+                ft.replace(getId(), adoptionRegulation);
                 ft.commit();
+
+
+//                FragmentTransaction ft = getFragmentManager().beginTransaction();
+//                ft.replace(getId(), new AdoptionRegulationFragment());
+//                ft.commit();
             }
         });
 

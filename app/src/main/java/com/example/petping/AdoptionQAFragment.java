@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,8 +45,13 @@ public class AdoptionQAFragment extends Fragment {
     private EditText oneA, twoA, threeA, fourA, fiveA, sixA, sevenA;
     private EditText eightA, nineA, tenA, elevenA;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private ArrayList<PetSearch> petProfileList;
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_adoption_qa_process, null);
+        if(getArguments() != null){
+            petProfileList = (ArrayList<PetSearch>)getArguments().getSerializable("petProfile");
+        }
+        flipper = view.findViewById(R.id.flipper_qa_process);
         oneQ = view.findViewById(R.id.qa_one_q);
         twoQ = view.findViewById(R.id.qa_two_q);
         threeQ = view.findViewById(R.id.qa_three_q);
@@ -79,7 +85,7 @@ public class AdoptionQAFragment extends Fragment {
                     }
                 });
 
-        flipper = view.findViewById(R.id.flipper_qa_process);
+
         btnOne = view.findViewById(R.id.qa_one_btn);
         btnOne.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -407,6 +413,7 @@ public class AdoptionQAFragment extends Fragment {
                                 tenQ.setText(String.valueOf(documentSnapshot.get("ten")));
                             }
                         });
+
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_ten)));
             }
         });
@@ -415,6 +422,12 @@ public class AdoptionQAFragment extends Fragment {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_waiting)));
+                StatusFragment statusFragment = new StatusFragment();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("petProfile", petProfileList);
+                statusFragment.setArguments(bundle);
+
                 Map<String, Object> data = new HashMap<>();
                 String one = oneA.getText().toString();
                 String two = twoA.getText().toString();
@@ -448,12 +461,10 @@ public class AdoptionQAFragment extends Fragment {
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                ft.replace(getId(), new AdoptionQAFragment());
-                                ft.commit();
                                 Log.d("Writing", "DocumentSnapshot successfully written!");
                             }
                         });
+                Log.d("PetProfileList", petProfileList.toString());
             }
         });
         return view;

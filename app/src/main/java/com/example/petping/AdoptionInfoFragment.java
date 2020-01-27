@@ -12,6 +12,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +25,7 @@ public class AdoptionInfoFragment extends Fragment {
     private EditText eNID, eDOB, eAddr, eJob, eSalary;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Button button;
+    private ArrayList<PetSearch> petProfileList;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,7 +36,9 @@ public class AdoptionInfoFragment extends Fragment {
         eJob = view.findViewById(R.id.edit_info_job);
         eSalary = view.findViewById(R.id.edit_info_salary);
         button = view.findViewById(R.id.edit_info_btn);
-
+        if(getArguments() != null){
+            petProfileList = (ArrayList<PetSearch>)getArguments().getSerializable("petProfile");
+        }
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,10 +62,18 @@ public class AdoptionInfoFragment extends Fragment {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+                        AdoptionQAFragment adoptionQA = new AdoptionQAFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("petProfile", petProfileList);
+
+                        adoptionQA.setArguments(bundle);
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft.replace(getId(), new AdoptionQAFragment());
+                        ft.replace(getId(), adoptionQA);
                         ft.commit();
-                        Log.d("Writing", "DocumentSnapshot successfully written!");
+//                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+//                        ft.replace(getId(), new AdoptionQAFragment());
+//                        ft.commit();
+//                        Log.d("Writing", "DocumentSnapshot successfully written!");
                     }
                 });
             }

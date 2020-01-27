@@ -14,6 +14,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -24,10 +26,14 @@ public class AdoptionRegulationFragment extends Fragment {
     private TextView one, two, three, four, five, six, seven, eight;
     private CheckBox cbBox;
     private Button regBox;
+    private ArrayList<PetSearch> petProfileList;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
        View view = inflater.inflate(R.layout.fragment_adoption_reg_process, null);
+        if(getArguments() != null){
+            petProfileList = (ArrayList<PetSearch>)getArguments().getSerializable("petProfile");
+        }
        one = view.findViewById(R.id.reg_one);
        two = view.findViewById(R.id.reg_two);
        three = view.findViewById(R.id.reg_three);
@@ -66,9 +72,17 @@ public class AdoptionRegulationFragment extends Fragment {
                    regBox.setOnClickListener(new View.OnClickListener() {
                        @Override
                        public void onClick(View v) {
+                           AdoptionInfoFragment adoptionInfo = new AdoptionInfoFragment();
+                           Bundle bundle = new Bundle();
+                           bundle.putSerializable("petProfile", petProfileList);
+
+                           adoptionInfo.setArguments(bundle);
                            FragmentTransaction ft = getFragmentManager().beginTransaction();
-                           ft.replace(getId(), new AdoptionInfoFragment());
+                           ft.replace(getId(), adoptionInfo);
                            ft.commit();
+//                           FragmentTransaction ft = getFragmentManager().beginTransaction();
+//                           ft.replace(getId(), new AdoptionInfoFragment());
+//                           ft.commit();
                        }
                    });
                }
