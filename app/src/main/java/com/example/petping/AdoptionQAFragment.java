@@ -1,15 +1,30 @@
 package com.example.petping;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class AdoptionQAFragment extends Fragment {
     private ViewFlipper flipper;
@@ -23,15 +38,61 @@ public class AdoptionQAFragment extends Fragment {
     private ImageButton btnNineB,btnNineA;
     private ImageButton btnTenB,btnTenA;
     private ImageButton btnEleven;
+    private Button btnNext;
+    private TextView oneQ, twoQ, threeQ, fourQ, fiveQ, sixQ, sevenQ;
+    private TextView eightQ, nineQ, tenQ, elevenQ;
+    private EditText oneA, twoA, threeA, fourA, fiveA, sixA, sevenA;
+    private EditText eightA, nineA, tenA, elevenA;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_adoption_qa_process, null);
-        flipper = view.findViewById(R.id.flipper_qa_process);
+        oneQ = view.findViewById(R.id.qa_one_q);
+        twoQ = view.findViewById(R.id.qa_two_q);
+        threeQ = view.findViewById(R.id.qa_three_q);
+        fourQ = view.findViewById(R.id.qa_four_q);
+        fiveQ = view.findViewById(R.id.qa_five_q);
+        sixQ = view.findViewById(R.id.qa_six_q);
+        sevenQ = view.findViewById(R.id.qa_seven_q);
+        eightQ = view.findViewById(R.id.qa_eight_q);
+        nineQ = view.findViewById(R.id.qa_nine_q);
+        tenQ = view.findViewById(R.id.qa_ten_q);
+        elevenQ = view.findViewById(R.id.qa_eleven_q);
+
+        oneA = view.findViewById(R.id.qa_one_a);
+        twoA = view.findViewById(R.id.qa_two_a);
+        threeA = view.findViewById(R.id.qa_three_a);
+        fourA = view.findViewById(R.id.qa_four_a);
+        fiveA = view.findViewById(R.id.qa_five_a);
+        sixA = view.findViewById(R.id.qa_six_a);
+        sevenA = view.findViewById(R.id.qa_seven_a);
+        eightA = view.findViewById(R.id.qa_eight_a);
+        nineA = view.findViewById(R.id.qa_nine_a);
+        tenA = view.findViewById(R.id.qa_ten_a);
+        elevenA = view.findViewById(R.id.qa_eleven_a);
+        db.collection("Information")
+                .document("BasicQ")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        oneQ.setText(String.valueOf(documentSnapshot.get("one")));
+                    }
+                });
 
         flipper = view.findViewById(R.id.flipper_qa_process);
         btnOne = view.findViewById(R.id.qa_one_btn);
         btnOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("Information")
+                        .document("BasicQ")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                twoQ.setText(String.valueOf(documentSnapshot.get("two")));
+                            }
+                        });
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_two)));
             }
         });
@@ -42,11 +103,29 @@ public class AdoptionQAFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_one)));
+                db.collection("Information")
+                        .document("BasicQ")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                oneQ.setText(String.valueOf(documentSnapshot.get("one")));
+                            }
+                        });
             }
         });
         btnTwoA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("Information")
+                        .document("BasicQ")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                threeQ.setText(String.valueOf(documentSnapshot.get("three")));
+                            }
+                        });
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_three)));
             }
         });
@@ -56,12 +135,30 @@ public class AdoptionQAFragment extends Fragment {
         btnThreeB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("Information")
+                        .document("BasicQ")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                twoQ.setText(String.valueOf(documentSnapshot.get("two")));
+                            }
+                        });
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_two)));
             }
         });
         btnThreeA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("Information")
+                        .document("BasicQ")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                fourQ.setText(String.valueOf(documentSnapshot.get("four")));
+                            }
+                        });
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_four)));
             }
         });
@@ -71,12 +168,30 @@ public class AdoptionQAFragment extends Fragment {
         btnFourB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("Information")
+                        .document("BasicQ")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                threeQ.setText(String.valueOf(documentSnapshot.get("three")));
+                            }
+                        });
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_three)));
             }
         });
         btnFourA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("Information")
+                        .document("BasicQ")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                fiveQ.setText(String.valueOf(documentSnapshot.get("five")));
+                            }
+                        });
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_five)));
             }
         });
@@ -86,12 +201,30 @@ public class AdoptionQAFragment extends Fragment {
         btnFiveB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("Information")
+                        .document("BasicQ")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                fourQ.setText(String.valueOf(documentSnapshot.get("four")));
+                            }
+                        });
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_four)));
             }
         });
         btnFiveA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("Information")
+                        .document("BasicQ")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                sixQ.setText(String.valueOf(documentSnapshot.get("six")));
+                            }
+                        });
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_six)));
             }
         });
@@ -101,12 +234,30 @@ public class AdoptionQAFragment extends Fragment {
         btnSixB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("Information")
+                        .document("BasicQ")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                fiveQ.setText(String.valueOf(documentSnapshot.get("five")));
+                            }
+                        });
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_five)));
             }
         });
         btnSixA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("Information")
+                        .document("BasicQ")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                sevenQ.setText(String.valueOf(documentSnapshot.get("seven")));
+                            }
+                        });
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_seven)));
             }
         });
@@ -116,12 +267,30 @@ public class AdoptionQAFragment extends Fragment {
         btnSevenB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("Information")
+                        .document("BasicQ")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                sixQ.setText(String.valueOf(documentSnapshot.get("six")));
+                            }
+                        });
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_six)));
             }
         });
         btnSevenA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("Information")
+                        .document("BasicQ")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                eightQ.setText(String.valueOf(documentSnapshot.get("eight")));
+                            }
+                        });
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_eight)));
             }
         });
@@ -131,12 +300,30 @@ public class AdoptionQAFragment extends Fragment {
         btnEightB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("Information")
+                        .document("BasicQ")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                sevenQ.setText(String.valueOf(documentSnapshot.get("seven")));
+                            }
+                        });
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_seven)));
             }
         });
         btnEightA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("Information")
+                        .document("BasicQ")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                nineQ.setText(String.valueOf(documentSnapshot.get("nine")));
+                            }
+                        });
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_nine)));
             }
         });
@@ -146,12 +333,30 @@ public class AdoptionQAFragment extends Fragment {
         btnNineB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("Information")
+                        .document("BasicQ")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                eightQ.setText(String.valueOf(documentSnapshot.get("eight")));
+                            }
+                        });
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_eight)));
             }
         });
         btnNineA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("Information")
+                        .document("BasicQ")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                tenQ.setText(String.valueOf(documentSnapshot.get("ten")));
+                            }
+                        });
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_ten)));
             }
         });
@@ -161,12 +366,30 @@ public class AdoptionQAFragment extends Fragment {
         btnTenB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("Information")
+                        .document("BasicQ")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                nineQ.setText(String.valueOf(documentSnapshot.get("nine")));
+                            }
+                        });
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_nine)));
             }
         });
         btnTenA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("Information")
+                        .document("BasicQ")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                elevenQ.setText(String.valueOf(documentSnapshot.get("eleven")));
+                            }
+                        });
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_eleven)));
             }
         });
@@ -175,10 +398,64 @@ public class AdoptionQAFragment extends Fragment {
         btnEleven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db.collection("Information")
+                        .document("BasicQ")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                tenQ.setText(String.valueOf(documentSnapshot.get("ten")));
+                            }
+                        });
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_ten)));
             }
         });
 
+        btnNext = view.findViewById(R.id.qa_next_button);
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map<String, Object> data = new HashMap<>();
+                String one = oneA.getText().toString();
+                String two = twoA.getText().toString();
+                String three = threeA.getText().toString();
+                String four = fourA.getText().toString();
+                String five = fiveA.getText().toString();
+                String six = sixA.getText().toString();
+                String seven = sevenA.getText().toString();
+                String eight = eightA.getText().toString();
+                String nine = nineA.getText().toString();
+                String ten = tenA.getText().toString();
+                String eleven = elevenA.getText().toString();
+
+                data.put("one", one);
+                data.put("two", two);
+                data.put("three", three);
+                data.put("four", four);
+                data.put("five", five);
+                data.put("six", six);
+                data.put("seven", seven);
+                data.put("eight", eight);
+                data.put("nine", nine);
+                data.put("ten", ten);
+                data.put("eleven", eleven);
+
+                db.collection("User")
+                        .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .collection("Information")
+                        .document("BasicQ")
+                        .set(data)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                ft.replace(getId(), new AdoptionQAFragment());
+                                ft.commit();
+                                Log.d("Writing", "DocumentSnapshot successfully written!");
+                            }
+                        });
+            }
+        });
         return view;
     }
 }

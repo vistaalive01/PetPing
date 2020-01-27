@@ -19,19 +19,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="วัตถุประสงค์ของการรับเลี้ยง"/>
                 <EditText
+                    android:id="@+id/qa_one_a"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageButton
                     android:id="@+id/qa_one_btn"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/sex_female"
-                    />
+                    android:src="@drawable/sex_female"/>
+                <TextView
+                    android:id="@+id/qa_one_q"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/qa_two"
@@ -43,11 +43,8 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/sex_male"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ข้อ2"/>
                 <EditText
+                    android:id="@+id/qa_two_a"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageButton
@@ -55,6 +52,10 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/sex_female" />
+                <TextView
+                    android:id="@+id/qa_two_q"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/qa_three"
@@ -66,11 +67,8 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/sex_male"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ข้อ3"/>
                 <EditText
+                    android:id="@+id/qa_three_a"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageButton
@@ -78,6 +76,10 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/sex_female" />
+                <TextView
+                    android:id="@+id/qa_three_q"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/qa_four"
@@ -89,11 +91,8 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/sex_male"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ข้อ4"/>
                 <EditText
+                    android:id="@+id/qa_four_a"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageButton
@@ -101,6 +100,10 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/sex_female" />
+                <TextView
+                    android:id="@+id/qa_four_q"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/qa_five"
@@ -112,11 +115,8 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/sex_male"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ข้อ5"/>
                 <EditText
+                    android:id="@+id/qa_five_a"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageButton
@@ -124,6 +124,10 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/sex_female" />
+                <TextView
+                    android:id="@+id/qa_five_q"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/qa_six"
@@ -135,11 +139,8 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/sex_male"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ข้อ6"/>
                 <EditText
+                    android:id="@+id/qa_six_a"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageButton
@@ -147,6 +148,10 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/sex_female" />
+                <TextView
+                    android:id="@+id/qa_six_q"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/qa_seven"
@@ -158,11 +163,8 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/sex_male"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ข้อ7"/>
                 <EditText
+                    android:id="@+id/qa_seven_a"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageButton
@@ -170,6 +172,10 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/sex_female" />
+                <TextView
+                    android:id="@+id/qa_seven_q"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/qa_eight"
@@ -181,11 +187,8 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/sex_male"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ข้อ8"/>
                 <EditText
+                    android:id="@+id/qa_eight_a"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageButton
@@ -193,6 +196,10 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/sex_female" />
+                <TextView
+                    android:id="@+id/qa_eight_q"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/qa_nine"
@@ -204,11 +211,8 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/sex_male"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ข้อ9"/>
                 <EditText
+                    android:id="@+id/qa_nine_a"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageButton
@@ -216,6 +220,10 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/sex_female" />
+                <TextView
+                    android:id="@+id/qa_nine_q"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/qa_ten"
@@ -227,11 +235,8 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/sex_male"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ข้อ10"/>
                 <EditText
+                    android:id="@+id/qa_ten_a"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageButton
@@ -239,6 +244,10 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/sex_female" />
+                <TextView
+                    android:id="@+id/qa_ten_q"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/qa_eleven"
@@ -250,13 +259,19 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/sex_male"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ข้อ11"/>
                 <EditText
+                    android:id="@+id/qa_eleven_a"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+                <Button
+                    android:id="@+id/qa_next_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ต่อไป"/>
+                <TextView
+                    android:id="@+id/qa_eleven_q"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
         </ViewFlipper>
     </LinearLayout>

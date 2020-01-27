@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -30,6 +32,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 
@@ -42,19 +45,26 @@ public class DialogFiltering extends DialogFragment {
     private CheckBox sizeM;
     private CheckBox sizeL;
     private Spinner spinColor;
+    private RadioGroup radioGroupSex;
+    private RadioButton radioButton;
+    private RadioButton maleBtn;
+    private RadioButton femaleBtn;
     public  filterSelected mOnInputSelected;
     private ArrayList<String> petSearchAge = new ArrayList<>();
     private ArrayList<String> petSearchSize = new ArrayList<>();
     private String type;
+    private String sex;
+    private String color;
     private TextView textS, textM, textL;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.layout_dialog_filtering, null);
+        final View view = inflater.inflate(R.layout.layout_dialog_filtering, null);
         if(getArguments() != null){
             type = (String) getArguments().getString("type");
         }
@@ -90,6 +100,12 @@ public class DialogFiltering extends DialogFragment {
                 colorAdapter.notifyDataSetChanged();
             }
         });
+
+        //Sex
+        radioGroupSex = view.findViewById(R.id.rd_sex);
+        maleBtn = view.findViewById(R.id.rd_male);
+        femaleBtn = view.findViewById(R.id.rd_female);
+
 
         //Size
         textS = view.findViewById(R.id.text_size_s);
@@ -158,8 +174,18 @@ public class DialogFiltering extends DialogFragment {
                             petSearchSize.add("L");
                             petSearchSize.add("l");
                         }
-                        String color = spinColor.getSelectedItem().toString();
-                        mOnInputSelected.sendFiltering(color, petSearchAge, petSearchSize);
+                        int radioSex = radioGroupSex.getCheckedRadioButtonId();
+                        radioButton = view.findViewById(radioSex);
+                        if(radioButton == view.findViewById(R.id.rd_male)){
+                            sex = maleBtn.getText().toString();
+                            radioGroupSex.clearCheck();
+                        }
+                        else if(radioButton == view.findViewById(R.id.rd_female)){
+                            sex = femaleBtn.getText().toString();
+                            radioGroupSex.clearCheck();
+                        }
+                        color = spinColor.getSelectedItem().toString();
+                        mOnInputSelected.sendFiltering(color, sex, petSearchAge, petSearchSize);
                     }
                 });
         return builder.create();
@@ -177,6 +203,6 @@ public class DialogFiltering extends DialogFragment {
     }
 
     public interface filterSelected{
-        void sendFiltering(String color, ArrayList<String> petSearchAge, ArrayList<String> petSearchSize);
+        void sendFiltering(String color, String sex, ArrayList<String> petSearchAge, ArrayList<String> petSearchSize);
     }
 }

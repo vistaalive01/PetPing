@@ -38,17 +38,12 @@ public class SearchFragment extends Fragment {
     private RadioButton radioButtonType;
 
 //    private Spinner spinColor;
-    private RadioButton maleBtn;
-    private RadioButton femaleBtn;
     private Button searchButton;
-    private RadioGroup radioGroupSex;
-    private RadioButton radioButton;
-
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private String type;
-    private String sex;
+
 
     private PetSearch petSearch;
     private ArrayList<PetSearch> petList = new ArrayList<>();
@@ -107,12 +102,6 @@ public class SearchFragment extends Fragment {
 //        rabbitBtn = temp.findViewById(R.id.rd_rabbit);
 //        radioGroupType = temp.findViewById(R.id.rd_type);
 //
-//        //Sex
-//        maleBtn = temp.findViewById(R.id.rd_male);
-//        femaleBtn = temp.findViewById(R.id.rd_female);
-//        radioGroupSex = temp.findViewById(R.id.rd_sex);
-//
-
 //
 //        searchButton = temp.findViewById(R.id.pet_search);
 //        searchButton.setOnClickListener(new View.OnClickListener() {
@@ -149,14 +138,7 @@ public class SearchFragment extends Fragment {
 //                    petSearchSize.add("l");
 //                }
 //
-//                int radioSex = radioGroupSex.getCheckedRadioButtonId();
-//                radioButton = temp.findViewById(radioSex);
-//                if(radioButton == temp.findViewById(R.id.rd_male)){
-//                    sex = maleBtn.getText().toString();
-//                }
-//                else if(radioButton == temp.findViewById(R.id.rd_female)){
-//                    sex = femaleBtn.getText().toString();
-//                }
+
 //                searchPetResult();
 //            }
 //        });

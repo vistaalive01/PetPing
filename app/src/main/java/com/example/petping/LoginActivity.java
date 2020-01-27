@@ -59,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                             Intent Menu = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(Menu);
                             finish();
+                            showMessage("Can LogIn");
                         }
                         else{
                             showMessage("Log In failed");
