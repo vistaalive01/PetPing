@@ -30,21 +30,7 @@ import androidx.fragment.app.FragmentTransaction;
 public class SearchFragment extends Fragment {
     private ImageButton btnDog;
     private ImageButton btnCat;
-
-    private RadioGroup radioGroupType;
-    private RadioButton dogBtn;
-    private RadioButton catBtn;
-    private RadioButton rabbitBtn;
-    private RadioButton radioButtonType;
-
-//    private Spinner spinColor;
-    private Button searchButton;
-
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-    private String type;
-
-
     private PetSearch petSearch;
     private ArrayList<PetSearch> petList = new ArrayList<>();
 
@@ -95,137 +81,10 @@ public class SearchFragment extends Fragment {
                         });
             }
         });
-//
-//        //Type
-//        dogBtn = temp.findViewById(R.id.rd_dog);
-//        catBtn = temp.findViewById(R.id.rd_cat);
-//        rabbitBtn = temp.findViewById(R.id.rd_rabbit);
-//        radioGroupType = temp.findViewById(R.id.rd_type);
-//
-//
-//        searchButton = temp.findViewById(R.id.pet_search);
-//        searchButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                int radioType = radioGroupType.getCheckedRadioButtonId();
-//                radioButtonType = temp.findViewById(radioType);
-//                if(radioButtonType == temp.findViewById(R.id.rd_dog)){
-//                    type = dogBtn.getText().toString();
-//                    textS.setText("1-5 กิโลกรัม");
-//                    textM.setText("5-10 กิโลกรัม");
-//                    textL.setText("10 กิโลกรัมชึ้นไป");
-//                    textS.setVisibility(View.VISIBLE);
-//                    textM.setVisibility(View.VISIBLE);
-//                    textL.setVisibility(View.VISIBLE);
-//                }
-//                if(radioButtonType == temp.findViewById(R.id.rd_cat)){
-//                    type = catBtn.getText().toString();
-//                }
-//                if(radioButtonType == temp.findViewById(R.id.rd_rabbit)){
-//                    type = rabbitBtn.getText().toString();
-//                }
-//
-//                if(sizeS.isChecked()){
-//                    petSearchSize.add("S");
-//                    petSearchSize.add("s");
-//                }
-//                if(sizeM.isChecked()){
-//                    petSearchSize.add("M");
-//                    petSearchSize.add("m");
-//                }
-//                if(sizeL.isChecked()){
-//                    petSearchSize.add("L");
-//                    petSearchSize.add("l");
-//                }
-//
-
-//                searchPetResult();
-//            }
-//        });
-
         return view;
     }
 
 
-//    private void searchPetResult(){
-//        if(type == null){
-//            Toast.makeText(getContext(),"กรุณาเลือกประเภทด้วยค่ะ",Toast.LENGTH_LONG).show();
-//        }
-//        //Choose every filter
-//        if (type != null && sex != null && !petSearchSize.isEmpty()) {
-//            db.collection("Pet")
-//                .whereEqualTo("Type", this.type)
-//                .whereEqualTo("Sex", this.sex)
-//                .whereIn("Size", this.petSearchSize)
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            setValue(task);
-//                        } else {
-//                            Log.d("Error", "Error getting documents: ", task.getException());
-//                        }
-//                    }
-//
-//                });
-//        }
-//
-//        //Not Choose "Sex"
-//        if (type != null && sex == null&& !petSearchSize.isEmpty()) {
-//            db.collection("Pet")
-//                    .whereEqualTo("Type", this.type)
-//                    .whereIn("Size", this.petSearchSize)
-//                    .get()
-//                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                            if (task.isSuccessful()) {
-//                                setValue(task);
-//                            } else {
-//                                Log.d("Error", "Error getting documents: ", task.getException());
-//                            }
-//                        }
-//                    });
-//        }
-//
-//        //Not Choose "Size"
-//        if (type != null && sex != null && petSearchSize.isEmpty()) {
-//            db.collection("Pet")
-//                    .whereEqualTo("Type", this.type)
-//                    .whereEqualTo("Sex", this.sex)
-//                    .get()
-//                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                            if (task.isSuccessful()) {
-//                                setValue(task);
-//                            } else {
-//                                Log.d("Error", "Error getting documents: ", task.getException());
-//                            }
-//                        }
-//                    });
-//        }
-//
-//        //Not Choose "Sex" and "Size"
-//        if (type != null && sex == null && petSearchSize.isEmpty()) {
-//            db.collection("Pet")
-//                    .whereEqualTo("Type", this.type)
-//                    .get()
-//                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                            if (task.isSuccessful()) {
-//                                setValue(task);
-//                            } else {
-//                                Log.d("Error", "Error getting documents: ", task.getException());
-//                            }
-//                        }
-//                    });
-//        }
-//
-//    }
-//
     private void setValue(Task<QuerySnapshot> task) {
 
         for (QueryDocumentSnapshot document : task.getResult()) {

@@ -2,55 +2,57 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="เงื่อนไขและข้อบังคับ" />
-
-    <TextView
-        android:id="@+id/reg_one"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/reg_two"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/reg_three"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/reg_four"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/reg_five"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/reg_six"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/reg_seven"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/reg_eight"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <CheckBox
-        android:id="@+id/reg_cb"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ข้าพเจ้ารับทราบและยินดีปฏิบัติตามข้อตกลงในเงื่อนไขและข้อบังคับทุกประการ" />
-
     <Button
         android:id="@+id/reg_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ต่อไป" />
+    <CheckBox
+        android:id="@+id/reg_cb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ข้าพเจ้ารับทราบและยินดีปฏิบัติตามข้อตกลงในเงื่อนไขและข้อบังคับทุกประการ" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="เงื่อนไขและข้อบังคับ" />
+
+        <TextView
+            android:id="@+id/reg_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/reg_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/reg_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/reg_four"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/reg_five"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/reg_six"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/reg_seven"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/reg_eight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+
 </LinearLayout>

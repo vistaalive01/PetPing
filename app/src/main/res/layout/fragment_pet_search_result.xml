@@ -4,63 +4,75 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginRight="32px"
-    android:layout_marginLeft="32px"
-    android:layout_marginTop="24px"
-    android:layout_marginBottom="24px"
+    android:layout_marginRight="40px"
+    android:layout_marginLeft="40px"
+    android:layout_marginTop="40px"
+    android:layout_marginBottom="40px"
     tools:context=".PetSearchResult">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_centerHorizontal="true"
-            android:textSize="20sp"
-            android:textColor="#000"
-            android:text="จำนวนน้องที่พบ"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/result_found"
-            android:layout_marginTop="20dp"
-            android:layout_centerHorizontal="true"
-            android:textSize="20sp"
-            android:textColor="#000"
-           />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30px"
-            android:layout_marginBottom="30px"
-            android:orientation="horizontal"
-            android:layout_centerHorizontal="true">
+            android:layout_height="match_parent"
+            android:layout_marginRight="40px"
+            android:layout_marginLeft="40px"
+            android:layout_marginTop="40px"
+            android:layout_marginBottom="40px"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="จำนวนน้องที่พบ"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/result_found"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ผลลัพธ์"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
 
             <Button
                 android:id="@+id/adapter_filter"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_weight="1"
                 android:text="Filter" />
 
         </LinearLayout>
 
         <ListView
             android:id="@+id/listView_pet"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:columnWidth="90dp"
-            android:gravity="center"
-            android:horizontalSpacing="10dp"
-            android:numColumns="auto_fit"
-            android:stretchMode="columnWidth"
-            android:verticalSpacing="10dp">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30px"
+            android:layout_marginLeft="30px"
+            android:layout_marginTop="10px"
+            android:layout_marginBottom="20px"
+            android:columnWidth="100dp"
+            android:paddingBottom="10dp"
+            android:dividerHeight="10sp"
+            android:gravity="center">
         </ListView>
     </LinearLayout>
-
 
 </RelativeLayout>

@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,6 +47,7 @@ public class AdoptionQAFragment extends Fragment {
     private EditText eightA, nineA, tenA, elevenA;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private ArrayList<PetSearch> petProfileList;
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_adoption_qa_process, null);
         if(getArguments() != null){
@@ -423,10 +425,6 @@ public class AdoptionQAFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_waiting)));
-                StatusFragment statusFragment = new StatusFragment();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("petProfile", petProfileList);
-                statusFragment.setArguments(bundle);
 
                 Map<String, Object> data = new HashMap<>();
                 String one = oneA.getText().toString();
@@ -464,7 +462,48 @@ public class AdoptionQAFragment extends Fragment {
                                 Log.d("Writing", "DocumentSnapshot successfully written!");
                             }
                         });
-                Log.d("PetProfileList", petProfileList.toString());
+
+                for(int i=0; i<petProfileList.size(); i++) {
+                    db.collection("Pet")
+                            .document(petProfileList.get(i).getID())
+                            .update("Status", "อยู่ระหว่างดำเนินการ")
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d("update status", "DocumentSnapshot successfully updated!");
+                                }
+                            });
+                    Map<String, Object> adop = new HashMap<>();
+                    adop.put("petID", petProfileList.get(i).getID());
+                    adop.put("petName", petProfileList.get(i).getName());
+                    adop.put("petType", petProfileList.get(i).getType());
+                    adop.put("petColor", petProfileList.get(i).getColour());
+                    adop.put("petSex", petProfileList.get(i).getSex());
+                    adop.put("petAge", petProfileList.get(i).getAge());
+                    adop.put("petBreed", petProfileList.get(i).getBreed());
+                    adop.put("petSize", petProfileList.get(i).getSize());
+                    adop.put("petURL", petProfileList.get(i).getUrl());
+                    adop.put("petWeight", petProfileList.get(i).getWeight());
+                    adop.put("petCharacter", petProfileList.get(i).getCharacter());
+                    adop.put("petMarking", petProfileList.get(i).getMarking());
+                    adop.put("petHealth", petProfileList.get(i).getHealth());
+                    adop.put("petFoundLoc", petProfileList.get(i).getFoundLoc());
+                    adop.put("petStatus", "อยู่ระหว่างดำเนินการ");
+                    adop.put("petStory", petProfileList.get(i).getStory());
+                    db.collection("User")
+                            .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .collection("Information")
+                            .document("Adoption")
+                            .collection("PetList")
+                            .document()
+                            .set(adop)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d("Writing", "DocumentSnapshot successfully written!");
+                                }
+                            });
+                }
             }
         });
         return view;

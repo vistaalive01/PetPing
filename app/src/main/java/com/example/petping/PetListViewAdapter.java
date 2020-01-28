@@ -20,7 +20,6 @@ import androidx.fragment.app.FragmentTransaction;
 class PetListViewAdapter extends BaseAdapter {
     private Context context;
     private List<PetSearch> petSearchList;
-    private PetProfileGeneralFragment petProfie;
 
     public PetListViewAdapter(Context context, List<PetSearch> petSearchList) {
         this.context = context;
