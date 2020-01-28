@@ -87,7 +87,6 @@ public class SearchFragment extends Fragment {
 
 
     private void setValue(Task<QuerySnapshot> task) {
-
         for (QueryDocumentSnapshot document : task.getResult()) {
             petSearch = new PetSearch(document.getId(), document.get("Name").toString(), document.get("Type").toString(),
                     document.get("Color").toString(), document.get("Sex").toString(), document.get("Age").toString(),
