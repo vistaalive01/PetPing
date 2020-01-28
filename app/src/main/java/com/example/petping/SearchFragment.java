@@ -40,8 +40,8 @@ public class SearchFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_search, null);
         btnDog = view.findViewById(R.id.btn_dog);
         btnCat = view.findViewById(R.id.btn_cat);
-        btnDog.setImageResource(R.drawable.dog);
-        btnCat.setImageResource(R.drawable.cat);
+        btnDog.setImageResource(R.mipmap.dog_background);
+        btnCat.setImageResource(R.mipmap.cat_background);
         //Show Pet that match with each user instead of random
         btnDog.setOnClickListener(new View.OnClickListener() {
             @Override
