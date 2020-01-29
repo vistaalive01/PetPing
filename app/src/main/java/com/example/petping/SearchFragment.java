@@ -48,6 +48,7 @@ public class SearchFragment extends Fragment {
             public void onClick(View v) {
                 db.collection("Pet")
                 .whereEqualTo("Type", "สุนัข")
+                .whereEqualTo("Status", "กำลังหาบ้าน")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -68,6 +69,7 @@ public class SearchFragment extends Fragment {
             public void onClick(View v) {
                 db.collection("Pet")
                         .whereEqualTo("Type", "แมว")
+                        .whereEqualTo("Status", "กำลังหาบ้าน")
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override

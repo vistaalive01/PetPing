@@ -11,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 import android.widget.ViewFlipper;
 
 import com.bumptech.glide.Glide;
@@ -29,6 +31,8 @@ public class PetProfileGeneralFragment extends Fragment {
     private Button btnGeneral, btnStory, btnShelter;
     private Button btnAdopt;
     private ArrayList<PetSearch> petItem;
+
+    private ToggleButton toggleButtonFav;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -103,6 +107,24 @@ public class PetProfileGeneralFragment extends Fragment {
             else {
                 imageSex.setImageResource(R.drawable.sex_female);
             }
+
+            toggleButtonFav = view.findViewById(R.id.toggle_favorite);
+            toggleButtonFav.setButtonDrawable(R.drawable.ic_favorite_border_black_24dp);
+            toggleButtonFav.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                    if(isChecked == true){
+                        toggleButtonFav.setChecked(true);
+                        toggleButtonFav.setButtonDrawable(R.drawable.ic_favorite_red_24dp);
+                        isStateSaved();
+                    } else if (isChecked == false){
+                        toggleButtonFav.setChecked(false);
+                        toggleButtonFav.setButtonDrawable(R.drawable.ic_favorite_border_black_24dp);
+                        isStateSaved();
+                    }
+                }
+            });
+
             PetSearch petProfile = new PetSearch(petProfileList.get(i).getID(), petProfileList.get(i).getName(),
                     petProfileList.get(i).getType(), petProfileList.get(i).getColour(), petProfileList.get(i).getSex(),
                     petProfileList.get(i).getAge(), petProfileList.get(i).getBreed(), petProfileList.get(i).getSize(), petProfileList.get(i).getUrl(),

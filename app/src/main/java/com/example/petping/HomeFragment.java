@@ -30,8 +30,9 @@ public class HomeFragment extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private ArrayList<PetSearch> petListDog = new ArrayList<>();
     private ArrayList<PetSearch> petListCat = new ArrayList<>();
+    private ArrayList<PetSearch> petList = new ArrayList<>();
     private HomeAdapter homeAdapter;
-    private GridView gridDog, gridCat;
+    private GridView gridDog, gridCat, gridAll;
 
     @Nullable
     @Override
@@ -44,14 +45,17 @@ public class HomeFragment extends Fragment {
         dogBtn = view.findViewById(R.id.home_dog_btn);
         catBtn = view.findViewById(R.id.home_cat_btn);
 
+        gridAll = view.findViewById(R.id.grid_all);
         gridDog = view.findViewById(R.id.grid_dog);
         gridCat = view.findViewById(R.id.grid_cat);
 
         for(int i=0; i<image.length; i++){
             flipperImages(image[i]);
         }
+
         db.collection("Pet")
                 .whereEqualTo("Type", "สุนัข")
+                .whereEqualTo("Status", "กำลังหาบ้าน")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -65,20 +69,30 @@ public class HomeFragment extends Fragment {
                                         document.get("Health").toString(), document.get("OriginalLocation").toString(), document.get("Status").toString(),
                                         document.get("Story").toString());
                                 petListDog.add(petSearch);
+                                petList.add(petSearch);
                             }
                             Set<PetSearch> set = new HashSet<PetSearch>(petListDog);
                             petListDog.clear();
                             petListDog.addAll(set);
 
-
+                            Set<PetSearch> setA = new HashSet<PetSearch>(petList);
+                            petList.clear();
+                            petList.addAll(setA);
+                            flipperPet.setDisplayedChild(flipperPet.indexOfChild(view.findViewById(R.id.grid_all)));
+                            homeAdapter = new HomeAdapter(getContext(), petList);
+                            gridAll.setAdapter(homeAdapter);
+                            homeAdapter.notifyDataSetChanged();
                         } else {
                             Log.d("Error", "Error getting documents: ", task.getException());
                         }
                     }
 
                 });
+
+
         db.collection("Pet")
                 .whereEqualTo("Type", "แมว")
+                .whereEqualTo("Status", "กำลังหาบ้าน")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -110,7 +124,6 @@ public class HomeFragment extends Fragment {
                 homeAdapter = new HomeAdapter(getContext(), petListDog);
                 gridDog.setAdapter(homeAdapter);
                 homeAdapter.notifyDataSetChanged();
-
             }
         });
 
@@ -125,8 +138,6 @@ public class HomeFragment extends Fragment {
         });
         return view;
     }
-
-
 
     public void flipperImages(int image){
         ImageView img = new ImageView(getContext());

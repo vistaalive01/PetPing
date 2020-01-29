@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ลงทะเบียน"
+        tools:ignore="MissingConstraints" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <EditText
+            android:id="@+id/regEmail"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:ems="10"
+            android:hint="อีเมล"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/regPassword"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="30dp"
+            android:ems="10"
+            android:hint="พาสเวิร์ด"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="@+id/regConfimPass"
+            app:layout_constraintStart_toStartOf="@+id/regConfimPass"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <EditText
+            android:id="@+id/regConfimPass"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:ems="10"
+            android:hint="คอนเพิร์มพาสเวิร์ด"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/regPhoneNum"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:ems="10"
+            android:hint="เบอร์โทรศัพท์"
+            android:inputType="textPersonName" />
+
+
+        <Button
+            android:id="@+id/regBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ลงทะเบียน"/>
+        <TextView
+            android:id="@+id/regTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="เข้าสู่ระบบ"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

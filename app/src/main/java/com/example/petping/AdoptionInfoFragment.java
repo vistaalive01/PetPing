@@ -22,7 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 public class AdoptionInfoFragment extends Fragment {
-    private EditText eNID, eDOB, eAddr, eJob, eSalary;
+    private EditText eNID, eDOB, eTel, eAddr, eJob, eSalary;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Button button;
     private ArrayList<PetSearch> petProfileList;
@@ -32,6 +32,7 @@ public class AdoptionInfoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_adoption_info_process, null);
         eNID = view.findViewById(R.id.edit_info_nid);
         eDOB = view.findViewById(R.id.edit_info_dob);
+        eTel = view.findViewById(R.id.edit_info_tel);
         eAddr = view.findViewById(R.id.edit_info_addr);
         eJob = view.findViewById(R.id.edit_info_job);
         eSalary = view.findViewById(R.id.edit_info_salary);
@@ -45,12 +46,14 @@ public class AdoptionInfoFragment extends Fragment {
             public void onClick(View v) {
                 String nid = eNID.getText().toString();
                 String DOB = eDOB.getText().toString();
+                String tel = eTel.getText().toString();
                 String addr = eAddr.getText().toString();
                 String job = eJob.getText().toString();
                 String  salary = eSalary.getText().toString();
                 Map<String, Object> data = new HashMap<>();
                 data.put("NID", nid);
                 data.put("DOB", DOB);
+                data.put("TelNo", tel);
                 data.put("Address", addr);
                 data.put("Job", job);
                 data.put("Salary", salary);

@@ -26,7 +26,12 @@
             android:id="@+id/flipper_home_pet"
             android:layout_width="match_parent"
             android:layout_height="200dp">
-
+            <GridView
+                android:id="@+id/grid_all"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:numColumns="2">
+            </GridView>
             <GridView
                 android:id="@+id/grid_dog"
                 android:layout_width="match_parent"
