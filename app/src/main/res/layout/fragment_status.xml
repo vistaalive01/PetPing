@@ -1,21 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginRight="40px"
+    android:layout_marginLeft="40px"
+    android:layout_marginTop="40px"
+    android:layout_marginBottom="40px">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ยังไม่มีสัตว์ที่คุณรับอุปการะ"/>
-    <ListView
-        android:id="@+id/listView_status"
+    <!--    <RelativeLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:orientation="vertical"-->
+    <!--        android:gravity="center_horizontal|center_vertical">-->
+
+    <!--        <TextView-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:textSize="15dp"-->
+    <!--            android:text="ยังไม่มีสัตว์ที่คุณรับอุปการะ" />-->
+    <!--        -->
+    <!--    </RelativeLayout>-->
+
+    <!--    <ListView-->
+    <!--        android:id="@+id/listView_status"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:columnWidth="90dp"-->
+    <!--        android:gravity="center"-->
+    <!--        android:horizontalSpacing="10dp"-->
+    <!--        android:numColumns="auto_fit"-->
+    <!--        android:stretchMode="columnWidth"-->
+    <!--        android:verticalSpacing="10dp">-->
+    <!--    </ListView>-->
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnWidth="90dp"
-        android:gravity="center"
-        android:horizontalSpacing="10dp"
-        android:numColumns="auto_fit"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="10dp">
-    </ListView>
-</RelativeLayout>
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <ListView
+            android:id="@+id/listView_status"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30px"
+            android:layout_marginTop="20px"
+            android:layout_marginRight="30px"
+            android:layout_marginBottom="20px"
+            android:columnWidth="100dp"
+            android:dividerHeight="2sp" >
+        </ListView>
+    </LinearLayout>
+</LinearLayout>

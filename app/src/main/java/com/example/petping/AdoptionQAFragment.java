@@ -424,7 +424,7 @@ public class AdoptionQAFragment extends Fragment {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_waiting)));
+//                flipper.setDisplayedChild(flipper.indexOfChild(view.findViewById(R.id.qa_waiting)));
 
                 Map<String, Object> data = new HashMap<>();
                 String one = oneA.getText().toString();
@@ -504,6 +504,10 @@ public class AdoptionQAFragment extends Fragment {
                                 }
                             });
                 }
+
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(getId(), new AdoptionWaitingFragment());
+                ft.commit();
             }
         });
         return view;

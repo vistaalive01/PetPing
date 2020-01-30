@@ -4,9 +4,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +20,16 @@ import android.widget.ToggleButton;
 import android.widget.ViewFlipper;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PetProfileGeneralFragment extends Fragment {
     private ArrayList<PetSearch> petProfileList;
@@ -31,6 +41,10 @@ public class PetProfileGeneralFragment extends Fragment {
     private Button btnGeneral, btnStory, btnShelter;
     private Button btnAdopt;
     private ArrayList<PetSearch> petItem;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private ArrayList<PetSearch> petFavList = new ArrayList<>();
+    private UserLikeAdapter likeAdapter;
+    private Map<String, Object> dataToSave = new HashMap<String, Object>();
 
     private ToggleButton toggleButtonFav;
 
@@ -85,6 +99,7 @@ public class PetProfileGeneralFragment extends Fragment {
         infoFoundLoc = view.findViewById(R.id.info_location);
         infoStatus = view.findViewById(R.id.info_status);
         imageSex = view.findViewById(R.id.img_info_sex);
+        toggleButtonFav = view.findViewById(R.id.toggle_favorite);
 
         petItem = new ArrayList<>();
         for(int i=0; i<petProfileList.size(); i++){
@@ -107,21 +122,24 @@ public class PetProfileGeneralFragment extends Fragment {
             else {
                 imageSex.setImageResource(R.drawable.sex_female);
             }
-
-            toggleButtonFav = view.findViewById(R.id.toggle_favorite);
             toggleButtonFav.setButtonDrawable(R.drawable.ic_favorite_border_black_24dp);
+            final int finalI = i;
             toggleButtonFav.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                    if(isChecked == true){
+                    if(isChecked){
                         toggleButtonFav.setChecked(true);
                         toggleButtonFav.setButtonDrawable(R.drawable.ic_favorite_red_24dp);
                         isStateSaved();
-                    } else if (isChecked == false){
+                        saveIntoLike(petProfileList.get(finalI).getID());
+
+                    }
+                     else if (!isChecked){
                         toggleButtonFav.setChecked(false);
                         toggleButtonFav.setButtonDrawable(R.drawable.ic_favorite_border_black_24dp);
                         isStateSaved();
                     }
+
                 }
             });
 
@@ -145,15 +163,29 @@ public class PetProfileGeneralFragment extends Fragment {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(getId(), adoptionRegulation);
                 ft.commit();
-
-
-//                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                //                FragmentTransaction ft = getFragmentManager().beginTransaction();
 //                ft.replace(getId(), new AdoptionRegulationFragment());
 //                ft.commit();
             }
         });
 
         return view;
+    }
+
+    private void saveIntoLike(String ID){
+        dataToSave.put("petID", ID);
+        db.collection("User")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .collection("Like")
+                .document(ID)
+                .set(dataToSave)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                    }
+                });
+
     }
 
 

@@ -16,9 +16,9 @@ public class UserLikeAdapter extends BaseAdapter {
     private ArrayList<PetSearch> petLike;
     private Context context;
 
-    public UserLikeAdapter (Context context, List<PetSearch> petLike){
+    public UserLikeAdapter (Context context, ArrayList<PetSearch> petLike){
         this.context = context;
-        this.petLike = (ArrayList<PetSearch>) petLike;
+        this.petLike = petLike;
     }
 
     @Override
@@ -38,31 +38,31 @@ public class UserLikeAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        View temp = View.inflate(context, R.layout.pet_listview_adapter, null);
+        view = View.inflate(context, R.layout.user_like_adpater, null);
         TextView textViewName, textViewAge, textViewBreed;
-        ImageView imgView = (ImageView) view.findViewById(R.id.adapter_img);
+        ImageView imgView = (ImageView) view.findViewById(R.id.like_img);
 
         Glide.with(context)
                 .load(petLike.get(i).getUrl())
                 .into((ImageView) imgView);
 
-        textViewName = view.findViewById(R.id.adapter_name);
-        textViewAge = view.findViewById(R.id.adapter_age);
-        textViewBreed = view.findViewById(R.id.adapter_breed);
+        textViewName = view.findViewById(R.id.like_name);
+//        textViewAge = view.findViewById(R.id.like_age);
+//        textViewBreed = view.findViewById(R.id.like_breed);
 
         String sexMale = "ผู้";
-        ImageView ImageViewSex = view.findViewById(R.id.adapter_sex);
+        ImageView ImageViewSex = view.findViewById(R.id.like_sex);
         if(petLike.get(i).getSex().equals(sexMale)){
-            ImageViewSex.setImageResource(R.drawable.sex_male);
+            ImageViewSex.setImageResource(R.drawable.sex_male_white);
         }
         else {
-            ImageViewSex.setImageResource(R.drawable.sex_female);
+            ImageViewSex.setImageResource(R.drawable.sex_female_white);
         }
 
         textViewName.setText(petLike.get(i).getName());
-        textViewAge.setText(petLike.get(i).getAge());
-        textViewBreed.setText(petLike.get(i).getBreed());
+//        textViewAge.setText(petLike.get(i).getAge());
+//        textViewBreed.setText(petLike.get(i).getBreed());
 
-        return temp;
+        return view;
     }
 }

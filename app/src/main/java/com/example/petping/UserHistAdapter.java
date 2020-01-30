@@ -11,10 +11,10 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-public class UserHisLikeAdapter extends BaseAdapter {
+public class UserHistAdapter extends BaseAdapter {
     private Context context;
     ArrayList<PetSearch> historyList;
-    public UserHisLikeAdapter(Context context, ArrayList<PetSearch> historyList) {
+    public UserHistAdapter(Context context, ArrayList<PetSearch> historyList) {
         this.context = context;
         this.historyList = historyList;
     }
@@ -36,7 +36,7 @@ public class UserHisLikeAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = View.inflate(context, R.layout.user_hist_like_adapter, null);
+        View view = View.inflate(context, R.layout.user_hist_adapter, null);
         TextView textViewName, textViewAge, textViewBreed;
         ImageView imgView = (ImageView) view.findViewById(R.id.adapter_img);
 
@@ -51,10 +51,10 @@ public class UserHisLikeAdapter extends BaseAdapter {
         String sexMale = "ผู้";
         ImageView ImageViewSex = view.findViewById(R.id.adapter_sex);
         if(historyList.get(position).getSex().equals(sexMale)){
-            ImageViewSex.setImageResource(R.drawable.sex_male);
+            ImageViewSex.setImageResource(R.drawable.sex_male_white);
         }
         else {
-            ImageViewSex.setImageResource(R.drawable.sex_female);
+            ImageViewSex.setImageResource(R.drawable.sex_female_white);
         }
 
         textViewName.setText(historyList.get(position).getName());

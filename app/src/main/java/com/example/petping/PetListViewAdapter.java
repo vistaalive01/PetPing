@@ -59,10 +59,10 @@ class PetListViewAdapter extends BaseAdapter {
         String sexMale = "ผู้";
         ImageView ImageViewSex = view.findViewById(R.id.adapter_sex);
         if(petSearchList.get(position).getSex().equals(sexMale)){
-            ImageViewSex.setImageResource(R.drawable.sex_male);
+            ImageViewSex.setImageResource(R.drawable.sex_male_white);
         }
         else {
-            ImageViewSex.setImageResource(R.drawable.sex_female);
+            ImageViewSex.setImageResource(R.drawable.sex_female_white);
         }
 
         textViewName.setText(petSearchList.get(position).getName());

@@ -36,7 +36,7 @@ public class UserHistoryFragment extends Fragment {
     private ArrayList<PetSearch> historyList = new ArrayList<>();
 
     private ListView listView;
-    private UserHisLikeAdapter historyAdapter;
+    private UserHistAdapter historyAdapter;
     public TextView resultFound;
     private ArrayList<PetHistory> petHistoryItem;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -77,37 +77,11 @@ public class UserHistoryFragment extends Fragment {
                                                     document.get("Health").toString(), document.get("OriginalLocation").toString(), document.get("Status").toString(),
                                                     document.get("Story").toString());
                                             historyList.add(petHist);
-                                        historyAdapter = new UserHisLikeAdapter(getContext(),historyList);
+                                        historyAdapter = new UserHistAdapter(getContext(),historyList);
                                         listView.setAdapter(historyAdapter);
                                     }
                                 });
-//                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                                    @Override
-//                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                                        for(final QueryDocumentSnapshot document : task.getResult()) {
-//                                            PetSearch petHist = new PetSearch(document.getId(), document.get("Name").toString(), document.get("Type").toString(),
-//                                                    document.get("Color").toString(), document.get("Sex").toString(), document.get("Age").toString(),
-//                                                    document.get("Breed").toString(), document.get("Size").toString(), document.get("Image").toString(),
-//                                                    document.get("Weight").toString(), document.get("Character").toString(), document.get("Marking").toString(),
-//                                                    document.get("Health").toString(), document.get("OriginalLocation").toString(), document.get("Status").toString(),
-//                                                    document.get("Story").toString());
-//                                            historyList.add(petHist);
-//                                            Log.d("ID", document.get("Name").toString());
-//                                        }
-//
-//                                        historyAdapter = new UserHisLikeAdapter(getContext(),historyList);
-//                                        listView.setAdapter(historyAdapter);
-//                                    }
-//                                });
-//                        Log.d("YY",task.toString().);
-//                        Log.d("Y",document.getId().toString());
-//                        Log.d("Y2",task.getResult().getQuery().get().toString());
-//                        if(document.getId().toString().equals(task.getResult().toString())){
-////                            historyAdapter = new PetListViewAdapter(getContext(), historyList);
-////                            listView.setAdapter(historyAdapter);
-//                        }else {
-//                            Log.d("Error", "Error getting documents: ", task.getException());
-//                        }
+
 
                     }
                 }

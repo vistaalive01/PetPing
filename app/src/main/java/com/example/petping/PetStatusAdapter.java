@@ -4,7 +4,10 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +38,12 @@ public class PetStatusAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = View.inflate(context, R.layout.pet_listview_status, null);
+        ImageView imgView = (ImageView) view.findViewById(R.id.status_img);
+
+        Glide.with(context)
+                .load(petList.get(position).getUrl())
+                .into((ImageView) imgView);
+
         TextView textViewName, textViewBreed, textViewStatus;
         textViewName = view.findViewById(R.id.status_name);
         textViewBreed = view.findViewById(R.id.status_breed);

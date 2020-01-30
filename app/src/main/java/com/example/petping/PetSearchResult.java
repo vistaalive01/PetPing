@@ -32,17 +32,14 @@ public class PetSearchResult extends Fragment implements DialogFiltering.filterS
     private ArrayList<PetSearch> petSearchFilter;
     private ListView listView;
     private PetListViewAdapter petAdapter;
-    private Button btnS, btnM, btnL, btnTotal;
     private ArrayList<PetSearch> petItem;
     private Button btnFiltering;
     private String type;
 
-    Map<String, Object> dataToSave = new HashMap<String, Object>();
+    private Map<String, Object> dataToSave = new HashMap<String, Object>();
     private String KEY_PETID = "petID";
     private String KEY_COUNT = "count";
-    private ArrayList<PetSearch> petFavList = new ArrayList<>();
-    private UserLikeAdapter likeAdapter;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+        private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public TextView resultFound;
     @Override
@@ -507,39 +504,12 @@ public class PetSearchResult extends Fragment implements DialogFiltering.filterS
         db.collection("User")
                 .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .collection("History")
-                .document(petID).set(dataToSave).addOnCompleteListener(new OnCompleteListener<Void>() {
+                .document(petID)
+                .set(dataToSave).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 Log.d("Y", "saved_1");
             }
         });
     }
-
-    private void saveIntoLike(ArrayList<PetSearch> petLikeList){
-        db.collection("User")
-                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .collection("Like")
-                .get()
-                .addOnCompleteListener (new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isComplete()){
-                            for(QueryDocumentSnapshot document : task.getResult()){
-                                PetSearch petSearch = new PetSearch(document.get("petID").toString(), document.get("petName").toString(), document.get("petType").toString(),
-                                        document.get("petColor").toString(), document.get("petSex").toString(), document.get("petAge").toString(),
-                                        document.get("petBreed").toString(), document.get("petSize").toString(), document.get("petURL").toString(),
-                                        document.get("petWeight").toString(), document.get("petCharacter").toString(), document.get("petMarking").toString(),
-                                        document.get("petHealth").toString(), document.get("petFoundLoc").toString(), document.get("petStatus").toString(),
-                                        document.get("petStory").toString());
-                                petFavList.add(petSearch);
-//                                Log.d("StatusList", document.get("petName").toString());
-                            }
-                            likeAdapter = new UserLikeAdapter(getContext(), petFavList);
-                            listView.setAdapter(likeAdapter);
-                        }
-                        else { Log.d("Error", "Error getting documents: ", task.getException()); }
-                    }
-                });
-    }
-
-}
+ }

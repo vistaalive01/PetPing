@@ -13,8 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -40,28 +42,37 @@ public class UserLikeFragment extends Fragment {
         db.collection("User")
                 .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .collection("Like")
-                .get()
-                .addOnCompleteListener (new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isComplete()){
-                            for(QueryDocumentSnapshot document : task.getResult()){
-                                PetSearch petSearch = new PetSearch(document.get("petID").toString(), document.get("petName").toString(), document.get("petType").toString(),
-                                        document.get("petColor").toString(), document.get("petSex").toString(), document.get("petAge").toString(),
-                                        document.get("petBreed").toString(), document.get("petSize").toString(), document.get("petURL").toString(),
-                                        document.get("petWeight").toString(), document.get("petCharacter").toString(), document.get("petMarking").toString(),
-                                        document.get("petHealth").toString(), document.get("petFoundLoc").toString(), document.get("petStatus").toString(),
-                                        document.get("petStory").toString());
-                                petFavList.add(petSearch);
-//                                Log.d("StatusList", document.get("petName").toString());
-                            }
-                            likeAdapter = new UserLikeAdapter(getContext(), petFavList);
-                            listView.setAdapter(likeAdapter);
-                        }
-                        else { Log.d("Error", "Error getting documents: ", task.getException()); }
-                    }
-                });
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    for(final QueryDocumentSnapshot document : task.getResult()){
+//                        historyList.add(document.getId());
+                        String ID = document.getId();
+                        Log.d("ID", document.getId());
+                        db.collection("Pet")
+                                .document(ID)
+                                .get()
+                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot document) {
+                                        PetSearch petHist = new PetSearch(document.getId(), document.get("Name").toString(), document.get("Type").toString(),
+                                                document.get("Color").toString(), document.get("Sex").toString(), document.get("Age").toString(),
+                                                document.get("Breed").toString(), document.get("Size").toString(), document.get("Image").toString(),
+                                                document.get("Weight").toString(), document.get("Character").toString(), document.get("Marking").toString(),
+                                                document.get("Health").toString(), document.get("OriginalLocation").toString(), document.get("Status").toString(),
+                                                document.get("Story").toString());
+                                        petFavList.add(petHist);
+                                        likeAdapter = new UserLikeAdapter(getContext(),petFavList);
+                                        listView.setAdapter(likeAdapter);
+                                    }
+                                });
 
+
+                    }
+                }
+            }
+        });
         return view;
     }
 }
