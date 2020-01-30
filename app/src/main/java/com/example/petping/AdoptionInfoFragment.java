@@ -22,7 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 public class AdoptionInfoFragment extends Fragment {
-    private EditText eNID, eDOB, eTel, eAddr, eJob, eSalary;
+    private EditText eName, eNID, eDOB, eTel, eAddr, eJob, eSalary;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Button button;
     private ArrayList<PetSearch> petProfileList;
@@ -30,6 +30,7 @@ public class AdoptionInfoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_adoption_info_process, null);
+        eName = view.findViewById(R.id.edit_info_name);
         eNID = view.findViewById(R.id.edit_info_nid);
         eDOB = view.findViewById(R.id.edit_info_dob);
         eTel = view.findViewById(R.id.edit_info_tel);
@@ -44,6 +45,7 @@ public class AdoptionInfoFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String name = eName.getText().toString();
                 String nid = eNID.getText().toString();
                 String DOB = eDOB.getText().toString();
                 String tel = eTel.getText().toString();
@@ -51,6 +53,7 @@ public class AdoptionInfoFragment extends Fragment {
                 String job = eJob.getText().toString();
                 String  salary = eSalary.getText().toString();
                 Map<String, Object> data = new HashMap<>();
+                data.put("Name", name);
                 data.put("NID", nid);
                 data.put("DOB", DOB);
                 data.put("TelNo", tel);
@@ -61,7 +64,7 @@ public class AdoptionInfoFragment extends Fragment {
                 .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .collection("Information")
                 .document("Information")
-                .set(data)
+                .update(data)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

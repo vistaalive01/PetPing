@@ -24,7 +24,7 @@ import java.util.HashMap;
 public class RegisterActivity extends AppCompatActivity {
     private TextView regTxt;
     private Button regBtn;
-    private EditText emailE, passWordE, confirmPassE;
+    private EditText nameE, emailE, passWordE, confirmPassE;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     @Override
@@ -34,6 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
         regTxt = findViewById(R.id.regTxt);
         regBtn = findViewById(R.id.regBtn);
 
+        nameE = findViewById(R.id.regName);
         emailE = findViewById(R.id.regEmail);
         passWordE = findViewById(R.id.regPassword);
         confirmPassE = findViewById(R.id.regConfimPass);
@@ -51,12 +52,16 @@ public class RegisterActivity extends AppCompatActivity {
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                               String email = emailE.getText().toString();
+                String name = nameE.getText().toString();
+                String email = emailE.getText().toString();
                 String password = passWordE.getText().toString();
                 String confirmPass = confirmPassE.getText().toString();
 
                 // Check wrong input from user
-                if(email.isEmpty()){
+                if(name.isEmpty()){
+                    showMessage("Please input name");
+                }
+                else if(email.isEmpty()){
                     showMessage("Please input email");
                 }
                 else if(password.isEmpty()){
@@ -67,39 +72,37 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 // User input every information
                 else{
-                    CreateUserAccount(email, password, confirmPass);
+                    CreateUserAccount(name, email, password, confirmPass);
 
                 }
             }
         });
     }
 
-    private void CreateUserAccount(final String email, final String password, final String confirmPass) {
-
+    private void CreateUserAccount(final String name, final String email, final String password, final String confirmPass) {
         auth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     HashMap<String, Object> data = new HashMap<>();
-                    data.put("email", email);
-                    data.put("password", password);
-                    data.put("confirmPass", confirmPass);
+                    data.put("UserName", name);
                     changePage();
-//                    db.collection("User")
-//                            .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                            .collection("Information")
-//                            .document("BasicInformation")
-//                            .set(data)
-//                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                @Override
-//                                public void onSuccess(Void aVoid) {
-//                                    changePage();
-//                                    showMessage("Can!!");
-//                                }
-//                            });
-                }
+                    db.collection("User")
+                            .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .collection("Information")
+                            .document("Information")
+                            .set(data)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    changePage();
+                                    showMessage("Can!!");
+                                }
+                            });
 
+
+                }
             }
         });
 

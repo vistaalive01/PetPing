@@ -17,6 +17,16 @@
         tools:ignore="MissingConstraints">
 
         <EditText
+            android:id="@+id/regName"
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:ems="10"
+            android:hint="ชื่อผู้ใช้งาน"
+            android:inputType="textPersonName" />
+
+        <EditText
             android:id="@+id/regEmail"
             android:layout_width="280dp"
             android:layout_height="50dp"
@@ -48,17 +58,6 @@
             android:ems="10"
             android:hint="คอนเพิร์มพาสเวิร์ด"
             android:inputType="textPassword" />
-
-        <EditText
-            android:id="@+id/regPhoneNum"
-            android:layout_width="280dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginEnd="60dp"
-            android:ems="10"
-            android:hint="เบอร์โทรศัพท์"
-            android:inputType="textPersonName" />
-
 
         <Button
             android:id="@+id/regBtn"

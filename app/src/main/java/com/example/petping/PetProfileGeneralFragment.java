@@ -1,6 +1,7 @@
 package com.example.petping;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -36,7 +37,7 @@ public class PetProfileGeneralFragment extends Fragment {
     private ImageView imageView, imageSex;
     private TextView infoName, infoAge, infoBreed;
     private TextView infoColor, infoSize, infoMarking, infoChar;
-    private TextView infoWeight, infoFoundLoc, infoStatus;
+    private TextView infoWeight, infoFoundLoc, infoStatus, infoMap;
     private ViewFlipper viewFlipper;
     private Button btnGeneral, btnStory, btnShelter;
     private Button btnAdopt;
@@ -100,6 +101,7 @@ public class PetProfileGeneralFragment extends Fragment {
         infoStatus = view.findViewById(R.id.info_status);
         imageSex = view.findViewById(R.id.img_info_sex);
         toggleButtonFav = view.findViewById(R.id.toggle_favorite);
+        infoMap = view.findViewById(R.id.shelter_map);
 
         petItem = new ArrayList<>();
         for(int i=0; i<petProfileList.size(); i++){
@@ -116,6 +118,7 @@ public class PetProfileGeneralFragment extends Fragment {
             infoWeight.setText(petProfileList.get(i).getWeight());
             infoFoundLoc.setText(petProfileList.get(i).getFoundLoc());
             infoStatus.setText(petProfileList.get(i).getStatus());
+
             if(petProfileList.get(i).getSex().equals("ผู้")){
                 imageSex.setImageResource(R.drawable.sex_male);
             }
@@ -151,6 +154,18 @@ public class PetProfileGeneralFragment extends Fragment {
                     petProfileList.get(i).getStory());
             petItem.add(petProfile);
         }
+
+        infoMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(getId(), new MapsActivity());
+                ft.commit();
+
+//                Intent intent = new Intent(getActivity(), MapsActivity);
+//                startActivity(intent);
+            }
+        });
 
         btnAdopt.setOnClickListener(new View.OnClickListener() {
             @Override

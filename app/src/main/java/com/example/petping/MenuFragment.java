@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 public class MenuFragment extends Fragment {
-    private Button btnEditUser, btnLikeList, btnPetStory, btnHistory, btnFAQ;
+    private Button btnEditUser, btnLikeList, btnPetStory, btnHistory, btnFAQ, btnRule;
 
     @Nullable
     @Override
@@ -27,12 +27,15 @@ public class MenuFragment extends Fragment {
         btnLikeList = view.findViewById(R.id.btn_like);
         btnPetStory = view.findViewById(R.id.btn_story);
         btnHistory = view.findViewById(R.id.btn_history);
+        btnRule = view.findViewById(R.id.btn_rule);
         btnFAQ = view.findViewById(R.id.btn_faq);
 
         btnEditUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(getId(), new UserEditFragment());
+                ft.commit();
             }
         });
 
@@ -61,10 +64,21 @@ public class MenuFragment extends Fragment {
             }
         });
 
+        btnRule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(getId(), new UserRegulationFragment());
+                ft.commit();
+            }
+        });
+
         btnFAQ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(getId(), new UserFAQFragment());
+                ft.commit();
             }
         });
 
