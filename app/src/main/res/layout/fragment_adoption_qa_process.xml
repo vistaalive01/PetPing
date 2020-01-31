@@ -96,7 +96,7 @@
                         <EditText
                             android:id="@+id/qa_one_a"
                             android:layout_width="260dp"
-                            android:layout_height="200dp"
+                            android:layout_height="280dp"
                             android:layout_gravity="center"
                             android:layout_marginBottom="10dp"
                             android:textSize="15dp"
@@ -187,7 +187,7 @@
                         <EditText
                             android:id="@+id/qa_two_a"
                             android:layout_width="260dp"
-                            android:layout_height="200dp"
+                            android:layout_height="280dp"
                             android:layout_gravity="center"
                             android:layout_marginBottom="10dp"
                             android:textSize="15dp"
@@ -277,7 +277,7 @@
                         <EditText
                             android:id="@+id/qa_three_a"
                             android:layout_width="260dp"
-                            android:layout_height="200dp"
+                            android:layout_height="280dp"
                             android:layout_gravity="center"
                             android:layout_marginBottom="10dp"
                             android:textSize="15dp"
@@ -367,7 +367,7 @@
                         <EditText
                             android:id="@+id/qa_four_a"
                             android:layout_width="260dp"
-                            android:layout_height="200dp"
+                            android:layout_height="280dp"
                             android:layout_gravity="center"
                             android:layout_marginBottom="10dp"
                             android:textSize="15dp"
@@ -456,7 +456,7 @@
                         <EditText
                             android:id="@+id/qa_five_a"
                             android:layout_width="260dp"
-                            android:layout_height="200dp"
+                            android:layout_height="280dp"
                             android:layout_gravity="center"
                             android:layout_marginBottom="10dp"
                             android:textSize="15dp"
@@ -545,7 +545,7 @@
                         <EditText
                             android:id="@+id/qa_six_a"
                             android:layout_width="260dp"
-                            android:layout_height="200dp"
+                            android:layout_height="280dp"
                             android:layout_gravity="center"
                             android:layout_marginBottom="10dp"
                             android:textSize="15dp"
@@ -635,7 +635,7 @@
                         <EditText
                             android:id="@+id/qa_seven_a"
                             android:layout_width="260dp"
-                            android:layout_height="200dp"
+                            android:layout_height="280dp"
                             android:layout_gravity="center"
                             android:layout_marginBottom="10dp"
                             android:textSize="15dp"
@@ -724,7 +724,7 @@
                         <EditText
                             android:id="@+id/qa_eight_a"
                             android:layout_width="260dp"
-                            android:layout_height="200dp"
+                            android:layout_height="280dp"
                             android:layout_gravity="center"
                             android:layout_marginBottom="10dp"
                             android:textSize="15dp"
@@ -813,7 +813,7 @@
                         <EditText
                             android:id="@+id/qa_nine_a"
                             android:layout_width="260dp"
-                            android:layout_height="200dp"
+                            android:layout_height="280dp"
                             android:layout_gravity="center"
                             android:layout_marginBottom="10dp"
                             android:textSize="15dp"
@@ -902,7 +902,7 @@
                         <EditText
                             android:id="@+id/qa_ten_a"
                             android:layout_width="260dp"
-                            android:layout_height="200dp"
+                            android:layout_height="280dp"
                             android:layout_gravity="center"
                             android:layout_marginBottom="10dp"
                             android:textSize="15dp"
@@ -992,7 +992,7 @@
                         <EditText
                             android:id="@+id/qa_eleven_a"
                             android:layout_width="260dp"
-                            android:layout_height="200dp"
+                            android:layout_height="280dp"
                             android:layout_gravity="center"
                             android:layout_marginBottom="10dp"
                             android:textSize="15dp"
@@ -1027,8 +1027,9 @@
                     <Button
                         android:id="@+id/qa_next_button"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_marginTop="3dp"
+                        android:background="@drawable/btn_click"
                         android:text="ต่อไป" />
                 </LinearLayout>
 

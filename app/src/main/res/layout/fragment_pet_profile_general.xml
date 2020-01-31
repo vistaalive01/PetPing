@@ -48,7 +48,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="200dp"
+                android:layout_marginTop="190dp"
                 app:srcCompat="@drawable/sex_female"/>
 
         </LinearLayout>
@@ -136,11 +136,11 @@
         <ViewFlipper
             android:id="@+id/view_flipper_info"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="235dp"
             android:background="@drawable/box_round"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginTop="285dp">
+            android:layout_marginTop="290dp">
 
             //Pet's profile
 
@@ -592,7 +592,7 @@
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="270dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/btn_click"
         android:text="สนใจรับเลี้ยง" />

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,10 +24,12 @@ import java.util.HashMap;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class UserEditFragment extends Fragment {
     private TextView userName, name, tel, job, addr;
-    private ImageView btnUserName, btnName, btnTel;
+    private ImageView btnUserName, btnName, btnTel, btnJob, btnAddr;
+    private Button edit_back_btn;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Nullable
@@ -42,6 +45,9 @@ public class UserEditFragment extends Fragment {
         btnUserName = view.findViewById(R.id.btn_edit_user_name);
         btnName = view.findViewById(R.id.btn_edit_name);
         btnTel = view.findViewById(R.id.btn_edit_tel);
+        btnJob = view.findViewById(R.id.btn_edit_job);
+        btnAddr = view.findViewById(R.id.btn_edit_addr);
+        edit_back_btn = view.findViewById(R.id.edit_back_btn);
 
         db.collection("User")
                 .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -75,11 +81,36 @@ public class UserEditFragment extends Fragment {
             }
         });
 
-        btnTel.setOnClickListener(new View.OnClickListener() {
+        btnJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), PopUpEditTelActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        btnAddr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), PopUpEditTelActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnAddr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), PopUpEditTelActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        edit_back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(getId(), new MenuFragment());
+                ft.commit();
             }
         });
         return view;

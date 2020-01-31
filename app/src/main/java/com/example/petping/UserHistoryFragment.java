@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -37,11 +38,15 @@ public class UserHistoryFragment extends Fragment {
 
     private ListView listView;
     private UserHistAdapter historyAdapter;
+    private Button hist_back_btn;
     public TextView resultFound;
     private ArrayList<PetHistory> petHistoryItem;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private DocumentReference userDocRef = FirebaseFirestore.getInstance().document("/User/RPF67EzLXyEJlOk1Yzm6/History/PetHistory");
+
+    public UserHistoryFragment() {
+    }
 //    private CollectionReference userColRef = FirebaseFirestore.getInstance().collection("/User/RPF67EzLXyEJlOk1Yzm6/History");
 
 
@@ -50,8 +55,9 @@ public class UserHistoryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_menu_history, container, false);
-
         listView = view.findViewById(R.id.listView_history);
+
+        hist_back_btn = view.findViewById(R.id.hist_back_btn);
 
         db.collection("User")
                 .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -85,6 +91,15 @@ public class UserHistoryFragment extends Fragment {
 
                     }
                 }
+            }
+        });
+
+        hist_back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(getId(), new MenuFragment());
+                ft.commit();
             }
         });
 

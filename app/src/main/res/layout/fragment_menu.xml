@@ -6,19 +6,20 @@
     android:layout_height="match_parent"
     android:layout_marginRight="50px"
     android:layout_marginLeft="50px"
-    android:layout_marginTop="24px"
+    android:layout_marginTop="50px"
     android:layout_marginBottom="24px">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <ImageView
             android:id="@+id/user_profile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_gravity="center_horizontal"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:srcCompat="@drawable/user" />
 
         <TextView
             android:id="@+id/textView"
@@ -26,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textAlignment="center"
-            android:textSize="18dp"
+            android:textSize="20dp"
             android:textStyle="bold"
             android:padding="10dp"
             android:text="NAME" />
@@ -79,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:padding="10dp"
-                    android:text="สิ่งที่ถูกใจ"
+                    android:text="น้องที่ถูกใจ"
                     android:textAlignment="textStart" />
             </LinearLayout>
             <LinearLayout
@@ -145,7 +146,7 @@ d
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:padding="10dp"
-                    android:text="เงื่อนไขและข้อตกลง"
+                    android:text="เงื่อนไขและข้อตกลงการรับเลี้ยงน้อง"
                     android:textAlignment="textStart" />
             </LinearLayout>
 
@@ -167,7 +168,7 @@ d
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:padding="10dp"
-                    android:text="FAQ"
+                    android:text="เงื่อนไขการใช้งานซอฟต์แวร์"
                     android:textAlignment="textStart" />
             </LinearLayout>
 

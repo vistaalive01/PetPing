@@ -111,36 +111,15 @@
 
             <Button
                 android:id="@+id/status_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
                 android:layout_gravity="right"
                 android:layout_marginTop="10dp"
+                android:textAlignment="center"
                 android:text="สถานะ"
                 android:textSize="15dp"
-                android:textColor="#000"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="end"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="5dp"
-                    android:textColor="#575757"
-                    android:text="อัปเดตล่าสุด" />
-
-                <TextView
-                    android:id="@+id/status_update"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:textColor="#575757"
-                    android:text="29/01/2563 20:30"/>
-            </LinearLayout>
+                android:textColor="#000"
+                android:background="@drawable/btn_click"/>
 
         </LinearLayout>
     </LinearLayout>
