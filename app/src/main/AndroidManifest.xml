@@ -52,6 +52,12 @@
         <activity
             android:name=".PopUpEditTelActivity"
             android:theme="@style/AppTheme.PopUp" />
+        <activity
+            android:name=".PopUpEditAddrActivity"
+            android:theme="@style/AppTheme.PopUp" />
+        <activity
+            android:name=".PopUpEditJobActivity"
+            android:theme="@style/AppTheme.PopUp" />
     </application>
 
 </manifest>

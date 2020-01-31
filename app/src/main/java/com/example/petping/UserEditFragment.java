@@ -81,10 +81,18 @@ public class UserEditFragment extends Fragment {
             }
         });
 
+        btnTel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), PopUpEditTelActivity.class);
+                startActivity(intent);
+            }
+        });
+
         btnJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), PopUpEditTelActivity.class);
+                Intent intent = new Intent(getContext(), PopUpEditJobActivity.class);
                 startActivity(intent);
             }
         });
@@ -92,18 +100,12 @@ public class UserEditFragment extends Fragment {
         btnAddr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), PopUpEditTelActivity.class);
+                Intent intent = new Intent(getContext(), PopUpEditAddrActivity.class);
                 startActivity(intent);
             }
         });
 
-        btnAddr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), PopUpEditTelActivity.class);
-                startActivity(intent);
-            }
-        });
+
 
         edit_back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
