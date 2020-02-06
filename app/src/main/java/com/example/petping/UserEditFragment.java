@@ -100,12 +100,10 @@ public class UserEditFragment extends Fragment {
         btnAddr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), PopUpEditAddrActivity.class);
+                Intent intent = new Intent(getContext(), PopUpEditAddressActivity.class);
                 startActivity(intent);
             }
         });
-
-
 
         edit_back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
