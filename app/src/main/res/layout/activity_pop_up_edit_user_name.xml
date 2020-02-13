@@ -15,8 +15,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
-        android:padding="10dp"
-        android:inputType="phone" />
+        android:padding="10dp" />
     <Button
         android:id="@+id/pop_btn_name"
         android:layout_width="wrap_content"

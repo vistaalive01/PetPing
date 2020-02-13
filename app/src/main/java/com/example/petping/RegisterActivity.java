@@ -87,6 +87,10 @@ public class RegisterActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     HashMap<String, Object> data = new HashMap<>();
                     data.put("UserName", name);
+                    data.put("Name","");
+                    data.put("TelNo","");
+                    data.put("Job","");
+                    data.put("Address","");
                     changePage();
                     db.collection("User")
                             .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -97,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     changePage();
-                                    showMessage("Can!!");
+                                    //showMessage("Can!!");
                                 }
                             });
 

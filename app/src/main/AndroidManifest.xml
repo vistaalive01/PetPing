@@ -42,7 +42,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ManagePet" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".PopUpEditUserNameActivity"
             android:theme="@style/AppTheme.PopUp" />
@@ -53,7 +54,7 @@
             android:name=".PopUpEditTelActivity"
             android:theme="@style/AppTheme.PopUp" />
         <activity
-            android:name=".PopUpEditAddrActivity"
+            android:name=".PopUpEditAddressActivity"
             android:theme="@style/AppTheme.PopUp" />
         <activity
             android:name=".PopUpEditJobActivity"
