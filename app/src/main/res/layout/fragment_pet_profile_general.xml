@@ -388,7 +388,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
-                        android:text="บลาๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆๆ" />
+                        android:text="น้องหลงทางอยู่หน้าเทศบาลศาลายา มีอาการบาดเจ็บที่ขาเล็กน้อย และได้รับการช่วยเหลือในการรักษา พร้อมทำหมันเรียบร้อยร้อย น้องฝากบอกพี่ ๆ ว่า - พร้อมไปอยู่บ้านใหม่แล้วงับ! -" />
 
                 </LinearLayout>
             </ScrollView>
