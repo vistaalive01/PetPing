@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class ManagePetInfoShelterFragment extends Fragment {
     private ArrayList<PetSearch> petList = new ArrayList<>();
@@ -51,8 +52,9 @@ public class ManagePetInfoShelterFragment extends Fragment {
         btnAddPet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), PopUpShelterAddPet.class);
-                startActivity(intent);
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(getId(), new AddPetShelterFragment());
+                ft.commit();
             }
         });
 
