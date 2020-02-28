@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="235dp">
+
+        <Button
+            android:id="@+id/info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="@android:color/transparent"
+            android:textSize="16dp"
+            android:text="ข้อมูลทั่วไป" />
+
+        <Button
+            android:id="@+id/story"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="@android:color/transparent"
+            android:textSize="16dp"
+            android:text="เรื่องราวของน้อง" />
+    </LinearLayout>
+    <ViewFlipper
+        android:id="@+id/view_flipper_shelter"
+        android:layout_width="match_parent"
+        android:layout_height="235dp"
+        android:background="@drawable/box_round"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="290dp">
+        <LinearLayout
+            android:id="@+id/view_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ข้อมูลสัตว์" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/view_story"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="เรื่องรางของน้อง" />
+      </LinearLayout>
+    </ViewFlipper>
+
+</FrameLayout>

@@ -59,9 +59,6 @@
         <activity
             android:name=".PopUpEditJobActivity"
             android:theme="@style/AppTheme.PopUp" />
-        <activity
-            android:name=".AddPetShelterFragment"
-            android:theme="@style/AppTheme.PopUp" />
     </application>
 
 </manifest>

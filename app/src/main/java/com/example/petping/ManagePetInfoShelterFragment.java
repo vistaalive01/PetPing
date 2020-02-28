@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -28,6 +29,7 @@ public class ManagePetInfoShelterFragment extends Fragment {
     private PetSearch petSearch;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Button btnAddPet;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class ManagePetInfoShelterFragment extends Fragment {
 
                 });
 
+
         btnAddPet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +60,6 @@ public class ManagePetInfoShelterFragment extends Fragment {
                 ft.commit();
             }
         });
-
         return view;
     }
 
@@ -71,7 +73,23 @@ public class ManagePetInfoShelterFragment extends Fragment {
                     document.get("Story").toString());
             petList.add(petSearch);
         }
-        adapter = new ManagePetInfoShelterAdapter(getContext(), petList);
+        adapter = new ManagePetInfoShelterAdapter(getFragmentManager(),getId(), getContext(), petList);
         listView.setAdapter(adapter);
+
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                petItem = new ArrayList<>();
+//                PetInfoShelterFragment petInfo = new PetInfoShelterFragment();
+//                Bundle bundle = new Bundle();
+//                petItem.add(petList.get(position));
+//                bundle.putSerializable("petInfo", petItem);
+//
+//                petInfo.setArguments(bundle);
+//                FragmentTransaction ft = getFragmentManager().beginTransaction();
+//                ft.replace(getId(), petInfo);
+//                ft.commit();
+//            }
+//        });
     }
 }
