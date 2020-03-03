@@ -106,7 +106,6 @@ public class DialogFiltering extends DialogFragment {
         maleBtn = view.findViewById(R.id.rd_male);
         femaleBtn = view.findViewById(R.id.rd_female);
 
-
         //Size
         textS = view.findViewById(R.id.text_size_s);
         textM = view.findViewById(R.id.text_size_m);

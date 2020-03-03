@@ -19,7 +19,9 @@ public class SelectTypeUserActivity extends AppCompatActivity {
         btnShelter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SelectTypeUserActivity.this, LogInShelterActivity.class);
+                //ใช้อันที่ comment
+//                Intent intent = new Intent(SelectTypeUserActivity.this, LogInShelterActivity.class);
+                Intent intent = new Intent(SelectTypeUserActivity.this, MainShelterActivity.class);
                 startActivity(intent);
                 finish();
             }

@@ -85,22 +85,22 @@ public class AddPetShelterFragment extends Fragment {
         imgView = view.findViewById(R.id.img_view);
         storageRef = FirebaseStorage.getInstance().getReference();
 
-//        if(weight.getText().toString().equals("1") || weight.getText().toString().equals("2") ||
-//                weight.getText().toString().equals("3") || weight.getText().toString().equals("4") ||
-//                weight.getText().toString().equals("5")){
-//            size.setText("S");
-//            size1 = "S";
-//        }
-//        else if(weight.getText().toString().equals("6") || weight.getText().toString().equals("7") ||
-//                weight.getText().toString().equals("8") || weight.getText().toString().equals("9") ||
-//                weight.getText().toString().equals("10")){
-//            size.setText("M");
-//            size1 = "M";
-//        }
-//        else if(weight.getText().toString().compareTo("11") > 0){
-//            size.setText("L");
-//            size1 = "L";
-//        }
+        if(weight.getText().toString().equals("1") || weight.getText().toString().equals("2") ||
+                weight.getText().toString().equals("3") || weight.getText().toString().equals("4") ||
+                weight.getText().toString().equals("5")){
+            size.setText("S");
+            size1 = "S";
+        }
+        if(weight.getText().toString().equals("6") || weight.getText().toString().equals("7") ||
+                weight.getText().toString().equals("8") || weight.getText().toString().equals("9") ||
+                weight.getText().toString().equals("10")){
+            size.setText("M");
+            size1 = "M";
+        }
+       if(weight.getText().toString().compareTo("11") > 0){
+            size.setText("L");
+            size1 = "L";
+        }
 
         btnChooseImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +113,6 @@ public class AddPetShelterFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 int radioSex = sexRdGroup.getCheckedRadioButtonId();
                 sexRd = view.findViewById(radioSex);
                 if(sexRd == view.findViewById(R.id.rd_male)){
