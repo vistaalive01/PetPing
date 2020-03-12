@@ -6,7 +6,7 @@
     <RelativeLayout
         android:id="@+id/RelativeLayout02"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="950dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -329,20 +329,27 @@
 
         </ViewFlipper>
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/save_info"
-                android:layout_width="150dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true">
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="บันทึกข้อมูล"
-                android:background="@drawable/btn_main" />
-        </LinearLayout>
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/save_info"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="บันทึกข้อมูล"
+                    android:background="@drawable/btn_main" />
+            </LinearLayout>
+        </FrameLayout>
+
 
     </RelativeLayout>
 </ScrollView>

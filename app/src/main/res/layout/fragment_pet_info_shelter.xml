@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/RelativeLayout02"
         android:layout_width="fill_parent"
-        android:layout_height="660dp">
+        android:layout_height="680dp">
 
         <ImageView
             android:id="@+id/image"
@@ -350,14 +350,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
                 //Floating Button ยังทำไม่ได้
                 <Button
                     android:id="@+id/edit_info"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/btn_main"
                     android:text="แก้ไขข้อมูล" />
@@ -367,14 +369,10 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginRight="40dp"
                     android:background="@drawable/btn_secondary"
                     android:text="ลบข้อมูล" />
             </LinearLayout>
         </FrameLayout>
-
-
     </RelativeLayout>
-
-
 </ScrollView>
