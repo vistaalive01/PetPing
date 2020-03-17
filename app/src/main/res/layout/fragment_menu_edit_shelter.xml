@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginHorizontal="32px"
-    android:layout_marginVertical="32px"
-    tools:context=".ManageInfoShelterFragment">
+    android:layout_marginVertical="32px">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageView
@@ -20,25 +18,38 @@
             android:layout_gravity="center_horizontal"
             app:srcCompat="@drawable/user" />
 
-        <TextView
-            android:id="@+id/shelter_name"
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Thailand Adopter Club"
-            android:textColor="#000"
-            android:textFontWeight="bold"
-            tools:ignore="MissingConstraints" />
+            android:text="เปลี่ยนรูปภาพ" />
 
-        <Button
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="แก้ไขข้อมูล" />
+            android:layout_height="0.5dp"
+            android:layout_marginVertical="8dp"
+            android:background="#444" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="4dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="ชื่อศูนย์พักพิง"
+                android:textColor="#000" />
+
+            <EditText
+                android:id="@+id/edit_shelter_name"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
@@ -47,17 +58,15 @@
                 android:text="หมายเลขใบอนุญาต"
                 android:textColor="#000" />
 
-            <TextView
-                android:id="@+id/shelter_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="999999" />
+            <EditText
+                android:id="@+id/edit_shelter_id"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="4dp"
             android:orientation="horizontal">
 
             <TextView
@@ -66,17 +75,15 @@
                 android:text="ที่อยู่"
                 android:textColor="#000" />
 
-            <TextView
-                android:id="@+id/shelter_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="999999" />
+            <EditText
+                android:id="@+id/edit_shelter_addr"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="4dp"
             android:orientation="horizontal">
 
             <TextView
@@ -85,17 +92,15 @@
                 android:text="อีเมล"
                 android:textColor="#000" />
 
-            <TextView
-                android:id="@+id/shelter_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="shelter@gmail.com" />
+            <EditText
+                android:id="@+id/edit_shelter_email"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="4dp"
             android:orientation="horizontal">
 
             <TextView
@@ -104,17 +109,15 @@
                 android:text="เบอร์ติดต่อ"
                 android:textColor="#000" />
 
-            <TextView
-                android:id="@+id/shelter_tel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0666666666" />
+            <EditText
+                android:id="@+id/edit_shelter_tel"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="4dp"
             android:orientation="horizontal">
 
             <TextView
@@ -123,17 +126,15 @@
                 android:text="Facebook"
                 android:textColor="#000" />
 
-            <TextView
-                android:id="@+id/shelter_fb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Facebook Account Name" />
+            <EditText
+                android:id="@+id/edit_shelter_fb"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="4dp"
             android:orientation="horizontal">
 
             <TextView
@@ -142,17 +143,15 @@
                 android:text="Instagram"
                 android:textColor="#000" />
 
-            <TextView
-                android:id="@+id/shelter_ig"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Instagram Account" />
+            <EditText
+                android:id="@+id/edit_shelter_ig"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="4dp"
             android:orientation="horizontal">
 
             <TextView
@@ -161,13 +160,23 @@
                 android:text="Line ID"
                 android:textColor="#000" />
 
-            <TextView
-                android:id="@+id/shelter_line"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="pet4444adoption" />
+            <EditText
+                android:id="@+id/edit_shelter_line"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
-    </LinearLayout>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginVertical="16dp"
+            android:background="#444" />
 
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_main"
+            android:text="บันทึกข้อมูล"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
 </RelativeLayout>
